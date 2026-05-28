@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+#content-warning-banner {
+  padding: .75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-family: "Open Sans", sans-serif;
+  overflow: hidden;
+  box-shadow: 0 0 10px #ccc;
+  z-index: 1;
+  font-size: 16px;
+  line-height: 1;
+}
+
+#content-warning-banner:after {
+  content: "";
+  position: absolute;
+  left: -9999px;
+  right: -999px;
+  background-color: #fff;
+  bottom: 0;
+  top: 0;
+  z-index: -1;
+}

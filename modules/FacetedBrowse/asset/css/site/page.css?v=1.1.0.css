@@ -1,0 +1,149 @@
+@keyframes fa-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#categories,
+.facet ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#categories {
+    margin-top: 1rem;
+}
+
+#categories-return {
+    margin-bottom: 1rem;
+}
+
+#categories li {
+    border-bottom: 1px solid rgba(0,0,0,.08);
+    margin-bottom: .5rem;
+    padding-bottom: .5rem;
+}
+
+#categories li:last-child {
+    border-bottom-color: transparent;
+}
+
+.facet label {
+    display: flex;
+}
+
+.facet label input {
+    margin: 0 .25rem 0 0;
+}
+
+.resource-name {
+    font-weight: bold;
+}
+
+.categories-container,
+.facets-container,
+.facet {
+    border: 0;
+    padding: 0;
+}
+
+.facets-container {
+    padding: 1rem 0;
+}
+
+.categories-container legend,
+.facets-container legend {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.category,
+.facet {
+    margin-bottom: 1rem;
+}
+
+.facet legend {
+    font-size: 1.25rem;
+}
+
+.permalink-label {
+    display: inline-flex;
+    align-items: center;
+}
+
+input[type="text"].permalink {
+    margin: 0 0 0 .5rem;
+}
+
+#section-sidebar {
+    width: 30%;
+    padding-right: .5rem;
+}
+
+#section-content {
+    width: 70%;
+    padding-left: .5rem;
+}
+
+#container {
+    display: flex;
+}
+
+.faceted-browse-page .browse-controls > * {
+    margin-bottom: 1rem;
+}
+
+.button.permalink .default:after {
+    content: "\f328";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 500;
+    margin-left: .25rem;
+    cursor: pointer;
+    opacity: 1;
+}
+
+.button.permalink {
+    position: relative;
+}
+
+.button.permalink .success {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.button.permalink .success.active {
+    display: block;
+}
+
+.button.permalink .default.inactive {
+    opacity: 0;
+}
+
+#section-content.loading {
+    overflow: hidden;
+    position: relative;
+}
+
+#section-content.loading * {
+    display: none;
+}
+
+#section-content.loading:before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f1ce";
+    position: absolute;
+    top: .75em;
+    left: calc(50% - .6em);
+    font-size: 4em;
+    animation: fa-spin 1s infinite linear;
+    text-align: center;
+}
+

@@ -1,0 +1,62 @@
+  .flip-card-front,
+    .flip-card-back {
+        background-color: transparent;
+}
+
+a.button {
+    padding-top: 3px; 
+    padding-bottom: 3px;
+    padding-left: 12px; 
+    padding-right: 12px; 
+    background-color: #b13a1a; 
+    color: #fff; 
+    border-radius: 4px; 
+    display: inline-block; 
+    border: 0; 
+    font-size: 15px;
+    
+}
+
+a.button-outline {
+    border: 2px solid #B13A1A; 
+    padding-top: 2px; 
+    padding-bottom: 1px; 
+    padding-left: 15px; 
+    padding-right: 15px; 
+    background-color: #F6F1E9; 
+    color: #B13A1A; 
+    border-radius: 4px; 
+    display: inline-block; 
+    cursor: pointer; 
+    font-size: 15px; 
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+}
+
+a.button-black {
+  padding-top: 3px; 
+  padding-bottom: 3px; 
+  padding-left: 12px; 
+  padding-right: 12px; 
+  background-color: #131B1B; 
+  color: #fff; 
+  border-radius: 4px; 
+  display: inline-block; 
+  border: 0; 
+  cursor: pointer; 
+  font-size: 15px; 
+  margin-left: 45%; 
+  margin-top: 30px; 
+  margin-bottom: 40px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.browse-controls {
+ display: none;
+}
+
+ul.resource-list img {
+ height: 140px;
+ width: 100%;
+ object-fit: cover ;
+}

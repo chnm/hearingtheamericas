@@ -1,0 +1,16 @@
+#metadata-browse-properties .field.delete {
+    background-color: #fcc;
+}
+
+#metadata-browse-properties .collapse + .collapsible {
+    margin-top: .5em;
+}
+
+#metadata-browse-properties .restore-property {
+    display: none;
+}
+
+a.metadata-browse-link {
+    font-size: 75%;
+    display: block !important;
+}
