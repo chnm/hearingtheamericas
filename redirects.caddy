@@ -1,0 +1,93 @@
+# Legacy Omeka S URL repair for the hearingtheamericas.org archive.
+#
+# This directory is a static export of an Omeka S install, and the export
+# appended .html to every page: /s/the-americas/item/4 became
+# /s/the-americas/item/4.html. Everything indexed, cited or bookmarked before
+# the migration points at the extensionless form -- including the `@id`
+# permalinks Omeka wrote into the JSON-LD block on all 914 resource pages,
+# which are what a citation made from this site would have recorded.
+#
+# Ordering matters. Caddy runs `redir` before `handle`, so these fire ahead of
+# the object-storage matcher, and among the `redir`s below file order decides.
+# Every specific rule must therefore stay above the generic one at the bottom.
+#
+# Sibling archives (occupyarchive, virginiaslostat, mallhistory, thanksroy,
+# iowmaterialhistorieswebinar.org) carry the same shape. This is the second
+# Omeka *S* site in the set, after iowmaterial: Omeka S namespaces every public
+# URL under /s/<site-slug>/, and there is exactly one site here, the-americas.
+
+@needs_html {
+	not path *.*       # already has an extension: .html (no loop), assets
+	not path */        # directories already resolve to index.html
+	not path /files/*  # object storage; hashes must reach their own handler
+	# Caddy runs every `redir` before any `respond`, so the 410 block at the
+	# bottom of this file only ever fires for paths excluded here. Without
+	# these lines /admin would 301 to /admin.html and 404.
+	not path /api /api/* /api-context /admin /admin/* /login /logout /install
+}
+
+# ---------------------------------------------------------------------------
+# The site root. Omeka S served the home page at three URLs -- /, the site
+# root, and the page slug it is set as -- and the crawl kept a copy of each.
+# The archive keeps one, at /, and these send the other two there.
+@site_root path /s/the-americas /s/the-americas/ /s/the-americas/page/welcome /s/the-americas/page/welcome/
+redir @site_root / 301
+
+# ---------------------------------------------------------------------------
+# Search. Omeka S ran full-text search at /s/the-americas/index/search with a
+# `fulltext_search` parameter, and the theme put a form posting to it in the
+# header of every one of the 963 pages. search.html reads the same parameter,
+# so a link of the old shape still lands on a real result set; {query} carries
+# it over verbatim, and an empty one simply opens the search page.
+@omeka_search path /s/the-americas/index/search /s/the-americas/index/search/
+redir @omeka_search /search.html?{query} 302
+
+# ---------------------------------------------------------------------------
+# Browse. Omeka paginated and sorted these server-side
+# (?sort_by=created&sort_order=desc&page=2), and item set 56 was the one big
+# enough to have a second page. The archive lists every item on one page, so
+# {path} deliberately drops the query rather than 301-ing to a page number that
+# no longer exists. The trailing-slash forms are spelled out because
+# `not path */` makes @needs_html skip them, and they would otherwise find no
+# index.html and 404 on their own.
+@item_browse path /s/the-americas/item /s/the-americas/item/
+redir @item_browse /s/the-americas/item.html 301
+
+# The advanced-search form. Eleven pages linked to it with an item_set_id, one
+# per set; those in-page links point at the set's own page now, and this covers
+# anything outside the archive that followed the same shape.
+@advanced_search path /s/the-americas/item/search /s/the-americas/item-set/search
+redir @advanced_search /s/the-americas/item.html 301
+
+# The trailing-slash form only. Without the slash this path is caught by the
+# generic rule, which already produces exactly the right target.
+redir /s/the-americas/item-set/ /s/the-americas/item-set.html 301
+
+# ---------------------------------------------------------------------------
+# The Artists page. FacetedBrowse drew it with three XHR calls to endpoints
+# under the page's own URL; the list and its Style facet are in the page now,
+# so anything that reached for the endpoints goes to the page that replaced
+# them rather than to a 404.
+@faceted_endpoints path /s/the-americas/faceted-browse/1/*
+redir @faceted_endpoints /s/the-americas/faceted-browse/1.html 301
+
+# ---------------------------------------------------------------------------
+# The site's own stylesheet. Omeka served the per-site CSS editor output at an
+# extensionless URL; the export gave it the extension it needs to be served as
+# CSS, and the generic rule below would otherwise not fire on it either way.
+redir /s/the-americas/css-editor /s/the-americas/css-editor.css 301
+
+# ---------------------------------------------------------------------------
+# Endpoints that no longer exist in any form. The REST API served the JSON this
+# retrofit was built from and is the one thing a static host cannot stand in
+# for; admin and login belong to an application that is gone. 410 says so,
+# rather than letting the generic rule turn them into a 404 that looks like a
+# mistake.
+@gone path /api /api/* /api-context /admin /admin/* /login /logout /install
+respond @gone 410
+
+# ---------------------------------------------------------------------------
+# The generic rule. {path} drops the query, which is correct here: every
+# query-carrying URL the origin served is a sort, a page number or a search,
+# and each is handled above.
+redir @needs_html {path}.html 301
