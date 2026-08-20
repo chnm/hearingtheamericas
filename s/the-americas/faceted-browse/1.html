@@ -1,26 +1,13 @@
 <!DOCTYPE html><html lang="en-US">    <head>
         <meta charset="utf-8">
-<meta name="viewport" content="width&#x3D;device-width,&#x20;initial-scale&#x3D;1">        <title>Hearing the Americas · Artist Browse · Hearing the Americas</title>        <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Montserrat" media="screen" rel="stylesheet" type="text&#x2F;css">
-<link href="../../../application/asset/css/iconfonts.css%3Fv=3.1.2.css" media="screen" rel="stylesheet" type="text&#x2F;css">
-<link href="../../../themes/hearing_americas/asset/css/style.css%3Fv=0.0.3.css" media="screen" rel="stylesheet" type="text&#x2F;css">
-<link href="../../../modules/FacetedBrowse/asset/css/site/page.css%3Fv=1.1.0.css" media="screen" rel="stylesheet" type="text&#x2F;css">
-<link href="../css-editor.css" media="screen" rel="stylesheet" type="text&#x2F;css">                <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script  src="../../../application/asset/js/global.js%3Fv=3.1.2"></script>
-<script  src="../../../themes/hearing_americas/asset/js/default.js%3Fv=0.0.3"></script>
-<script  src="../../../modules/FacetedBrowse/asset/js/faceted-browse.js%3Fv=1.1.0"></script>
-<script  src="../../../modules/FacetedBrowse/asset/js/site/page.js%3Fv=1.1.0"></script>
-<script  src="../../../modules/FacetedBrowse/asset/js/facet-render/value.js%3Fv=1.1.0"></script>
-<script  src="../../../modules/FacetedBrowse/asset/js/facet-render/resource-class.js%3Fv=1.1.0"></script>
-<script  src="../../../modules/FacetedBrowse/asset/js/facet-render/resource-template.js%3Fv=1.1.0"></script>
-<script  src="../../../modules/FacetedBrowse/asset/js/facet-render/item-set.js%3Fv=1.1.0"></script>
-<script  src="../../../modules/FacetedBrowse/asset/js/facet-render/full-text.js%3Fv=1.1.0"></script>
-<script  src="../../../modules/NumericDataTypes/asset/js/faceted-browse/facet-render/date-after.js%3Fv=1.7.0"></script>
-<script  src="../../../modules/NumericDataTypes/asset/js/faceted-browse/facet-render/date-before.js%3Fv=1.7.0"></script>
-<script  src="../../../modules/NumericDataTypes/asset/js/faceted-browse/facet-render/value-greater-than.js%3Fv=1.7.0"></script>
-<script  src="../../../modules/NumericDataTypes/asset/js/faceted-browse/facet-render/value-less-than.js%3Fv=1.7.0"></script>
-<script  src="../../../modules/NumericDataTypes/asset/js/faceted-browse/facet-render/duration-greater-than.js%3Fv=1.7.0"></script>
-<script  src="../../../modules/NumericDataTypes/asset/js/faceted-browse/facet-render/duration-less-than.js%3Fv=1.7.0"></script>
-<script  src="../../../modules/NumericDataTypes/asset/js/faceted-browse/facet-render/date-in-interval.js%3Fv=1.7.0"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">        <title>Artists · Hearing the Americas</title>        <link href="../../../themes/hearing_americas/asset/css/fonts.css" media="screen" rel="stylesheet" type="text/css">
+<link href="../../../application/asset/css/iconfonts.css" media="screen" rel="stylesheet" type="text/css">
+<link href="../../../themes/hearing_americas/asset/css/style.css" media="screen" rel="stylesheet" type="text/css">
+<link href="../../../modules/MetadataBrowse/asset/css/metadata-browse.css" media="screen" rel="stylesheet" type="text/css">
+<link href="../../../modules/bannerMessage/asset/warning-style.css" media="screen" rel="stylesheet" type="text/css">
+<link href="../css-editor.css" media="screen" rel="stylesheet" type="text/css">                <script src="../../../application/asset/js/vendor/jquery.min.js"></script>
+<script  src="../../../application/asset/js/global.js"></script>
+<script  src="../../../themes/hearing_americas/asset/js/default.js"></script>
 <script >
     //<!--
     
@@ -29,13 +16,24 @@ Omeka.jsTranslate = function(str) {
     return (str in jsTranslations) ? jsTranslations[str] : str;
 };
     //-->
-</script>    </head>
+</script>
+<link href="../../../themes/hearing_americas/asset/css/a11y.css" media="screen" rel="stylesheet" type="text/css">
+<link href="../../../modules/FacetedBrowse/asset/css/site/page.css" media="screen" rel="stylesheet" type="text/css">
+</head>
 
-    <body class="faceted-browse-page&#x20;resource&#x20;browse">        <a id="skipnav" href="1.html#content">Skip to main content</a>
+    <body class="faceted-browse-page resource browse content-warning-banner">
+<div class="notice" data-pagefind-ignore style="font-size: 12px; display: flex; align-items: center; background-color: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin-bottom: 0;">
+    <a class="notice-logo" href="https://rrchnm.org" target="_blank"><img src="../../../themes/hearing_americas/asset/img/rrchnm.png" alt="RRCHNM Logo" width="162" height="30" style="height: 30px; width: 162px; margin-right: 15px; padding: 0;"/></a>
+    <div>
+    This is a static copy of the final website maintained by the <a href="https://rrchnm.org" target="_blank">Roy Rosenzweig Center for History and New Media</a>.
+    </div>
+</div>
+<div id="content-warning-banner" data-pagefind-ignore><span>This site contains historical content which may be upsetting or offensive to some visitors. Please see the <a href="../page/content.html">content notice</a> for a full statement.</span></div>
+        <a id="skipnav" href="#content">Skip to main content</a>
                 <header>
-                        <a href="../../the-americas.html" class="site-title"><h1><span class="title">Hearing the Americas</span></h1></a>
+                        <a href="../../../index.html" class="site-title"><p class="site-title-text"><span class="title">Hearing the Americas</span></p></a>
             
-            <nav>
+            <nav aria-label="Main">
             <ul class="navigation">
     <li>
         <a href="../page/spins.html">Spins</a>
@@ -169,7 +167,7 @@ Omeka.jsTranslate = function(str) {
             </li>
         </ul>
     </li>
-    <li class="active">
+    <li>
         <a href="1.html">Artists</a>
     </li>
     <li>
@@ -187,55 +185,218 @@ Omeka.jsTranslate = function(str) {
 
             <div id="search">
                 
-<form action="https://hearingtheamericas.org/s/the-americas/index/search" id="search-form">
+<form action="../../../search.html" id="search-form" role="search">
     <input type="text" name="fulltext_search" value=""
         placeholder="Search"
-        aria-label="Search">
+        aria-label="Search this archive">
     <button type="submit">Search</button>
 </form>
             </div>
         </header>
-        <div id="content" role="main">
-            <div class="assets hero-image-spins default">
+        <main id="content" data-pagefind-body>
+        <div class="assets hero-image-spins default">
 	<div class="asset">
-		<img src="https://github.com/chnm/hearing-the-americas/blob/master/asset/img/artists-hero.png?raw=true" alt="" />
+		<img src="../../../themes/hearing_americas/asset/img/artists-hero.png" alt="">
 	</div>
 </div>
-
 <div class="div-banner" style="margin-top: -40px;">
 	<div class="spin-icon">
-		<img src="../../../files/asset/8eef2f04b3d1947e604dbf75c0d4d0dc1e777983.png">
+		<img src="../../../files/asset/8eef2f04b3d1947e604dbf75c0d4d0dc1e777983.png" alt="">
 	</div>
 	<div class="spin-banner">
-		<h2>Artists</h2>
+		<h1 class="heading-2">Artists</h1>
 		<p>Explore this selection of some of the most popular artists of the early record business.</p>
 	</div>
 </div>
-<div id="container" 
-    data-url-categories="/s/the-americas/faceted-browse/1/categories"
-    data-url-facets="/s/the-americas/faceted-browse/1/facets"
-    data-url-browse="/s/the-americas/faceted-browse/1/browse"
-    data-category-id="1"
-    data-category-query="item_set_id%5B%5D=55">
-    <div id="section-sidebar"></div>
-    <div id="section-content"></div>
+<div id="container">
+    <div id="section-sidebar">
+<form id="artist-facets" class="facets-container" hidden>
+  <fieldset class="facet">
+    <legend>Style</legend>
+    <ul>
+      <li><label><input class="value" type="radio" name="style" value="" checked> All styles</label></li>
+      <li><label><input class="value" type="radio" name="style" value="blues"> Blues</label></li>
+      <li><label><input class="value" type="radio" name="style" value="brazilian music"> Brazilian Music</label></li>
+      <li><label><input class="value" type="radio" name="style" value="ethnic humor"> Ethnic Humor</label></li>
+      <li><label><input class="value" type="radio" name="style" value="hawaiian music"> Hawaiian Music</label></li>
+      <li><label><input class="value" type="radio" name="style" value="jazz"> Jazz</label></li>
+      <li><label><input class="value" type="radio" name="style" value="minstrelsy"> Minstrelsy</label></li>
+      <li><label><input class="value" type="radio" name="style" value="ragtime"> Ragtime</label></li>
+      <li><label><input class="value" type="radio" name="style" value="tango"> Tango</label></li>
+      <li><label><input class="value" type="radio" name="style" value="vaudeville"> Vaudeville</label></li>
+    </ul>
+  </fieldset>
+</form>
+    </div>
+    <div id="section-content">
+        <p class="row-count" id="artist-count" role="status">49 artists</p>
+        <ul class="resource-list" id="artist-list" data-pagefind-ignore>
+    <li class="item resource" data-subjects="vaudeville">
+        <a class="resource-link" href="../item/6.html"><img src="../../../files/asset/318572191ae34885886a7def4dc0f7ee0f7a6323.jpg" alt=""><span class="resource-name">George W. Johnson</span></a>
+    </li>
+    <li class="item resource" data-subjects="">
+        <a class="resource-link" href="../item/21.html"><img src="/files/square/3d9ee3b9176c55d1ff7bc035057d6ae2824d7bc9.jpg" alt=""><span class="resource-name">Cal Stewart</span></a>
+    </li>
+    <li class="item resource" data-subjects="">
+        <a class="resource-link" href="../item/26.html"><img src="../../../files/asset/204decbbcaf99c219ecf6a6b6e3fa35f880a7f15.jpg" alt=""><span class="resource-name">Arthur Pryor</span></a>
+    </li>
+    <li class="item resource" data-subjects="vaudeville">
+        <a class="resource-link" href="../item/27.html"><img src="../../../files/asset/b48d8a9ba176259850a77e909a0fc1fb65a45b41.jpg" alt=""><span class="resource-name">Billy Murray</span></a>
+    </li>
+    <li class="item resource" data-subjects="vaudeville">
+        <a class="resource-link" href="../item/30.html"><img src="../../../files/asset/6e5d3c147fdd3b7c6ef5ee591004c569815dbb92.jpg" alt=""><span class="resource-name">Nora Bayes</span></a>
+    </li>
+    <li class="item resource" data-subjects="artists|blues|jazz">
+        <a class="resource-link" href="../item/33.html"><img src="../../../files/asset/cf3e88606874e85ace83c6a66302adbb6f42a9b6.jpg" alt=""><span class="resource-name">Lovie Austin</span></a>
+    </li>
+    <li class="item resource" data-subjects="jazz">
+        <a class="resource-link" href="../item/64.html"><img src="../../../files/asset/00edc200b5c4247ca2f690475d9ea127a729062f.jpg" alt=""><span class="resource-name">Original Dixieland Jazz Band</span></a>
+    </li>
+    <li class="item resource" data-subjects="blues">
+        <a class="resource-link" href="../item/71.html"><img src="../../../files/asset/3edfabe4e7e8e4064f53360975f9ea53d07fb896.jpg" alt=""><span class="resource-name">W.C. Handy</span></a>
+    </li>
+    <li class="item resource" data-subjects="jazz|tango">
+        <a class="resource-link" href="../item/167.html"><img src="../../../files/asset/c9f50381474c43a164ad6cefee2de89bab34d410.jpg" alt=""><span class="resource-name">James Reese Europe</span></a>
+    </li>
+    <li class="item resource" data-subjects="minstrelsy">
+        <a class="resource-link" href="../item/182.html"><img src="../../../files/asset/eff3633e2455450ed96994f8a7b8cbe379f43223.jpg" alt=""><span class="resource-name">Vernon Dalhart</span></a>
+    </li>
+    <li class="item resource" data-subjects="minstrelsy|ragtime">
+        <a class="resource-link" href="../item/185.html"><img src="../../../files/asset/19d8a7318aad3ae88097397fb48109f28cf02bdd.jpg" alt=""><span class="resource-name">Ernest Hogan</span></a>
+    </li>
+    <li class="item resource" data-subjects="minstrelsy">
+        <a class="resource-link" href="../item/187.html"><img src="../../../files/asset/487debc6986fdd58e7e1865ec68f09b617dc819a.jpg" alt=""><span class="resource-name">Bert Williams</span></a>
+    </li>
+    <li class="item resource" data-subjects="vaudeville|ragtime">
+        <a class="resource-link" href="../item/189.html"><img src="../../../files/asset/2978a071a1a1909e2a7ee68b36898af4a5dfbfbd.jpg" alt=""><span class="resource-name">Arthur Collins</span></a>
+    </li>
+    <li class="item resource" data-subjects="hawaiian music">
+        <a class="resource-link" href="../item/197.html"><img src="../../../files/asset/e07522be44e1061a613924af2b6cc61778289360.jpg" alt=""><span class="resource-name">July and &quot;Toots&quot; Paka</span></a>
+    </li>
+    <li class="item resource" data-subjects="hawaiian music">
+        <a class="resource-link" href="../item/207.html"><img src="../../../files/asset/b42ff3038a9948da1a27c76e11c34438b8e94f6d.jpg" alt=""><span class="resource-name">Frank Ferera</span></a>
+    </li>
+    <li class="item resource" data-subjects="blues">
+        <a class="resource-link" href="../item/259.html"><img src="../../../files/asset/6db53522358c8aa5d3934121066a9f6e78edf174.jpg" alt=""><span class="resource-name">Ida Cox</span></a>
+    </li>
+    <li class="item resource" data-subjects="blues">
+        <a class="resource-link" href="../item/262.html"><img src="../../../files/asset/193aa05fcf7b0c957988fee9dbfaa34a2c3c2a1a.jpg" alt=""><span class="resource-name">Ma Rainey</span></a>
+    </li>
+    <li class="item resource" data-subjects="vaudeville|blues">
+        <a class="resource-link" href="../item/274.html"><img src="../../../files/asset/fa94ec96366d1496438ab9e0907d16a4dec47642.jpg" alt=""><span class="resource-name">Mamie Smith</span></a>
+    </li>
+    <li class="item resource" data-subjects="minstrelsy|vaudeville">
+        <a class="resource-link" href="../item/281.html"><img src="../../../files/asset/fd2cbbff91a49ef7e6846a75e6d278c49d7a57ff.jpg" alt=""><span class="resource-name">Marie Cahill</span></a>
+    </li>
+    <li class="item resource" data-subjects="blues|vaudeville">
+        <a class="resource-link" href="../item/288.html"><img src="../../../files/asset/58a283d13bc8dbc0bbb8f5034cd828f93a69f4cf.jpg" alt=""><span class="resource-name">Marion Harris</span></a>
+    </li>
+    <li class="item resource" data-subjects="blues">
+        <a class="resource-link" href="../item/303.html"><img src="../../../files/asset/9800002018efc510451a9020c74225799dd791b7.jpg" alt=""><span class="resource-name">Sippie Wallace</span></a>
+    </li>
+    <li class="item resource" data-subjects="minstrelsy|vaudeville">
+        <a class="resource-link" href="../item/308.html"><img src="../../../files/asset/234616ddea71defeb50a34d1dc5dd2e124222ddc.jpg" alt=""><span class="resource-name">Sophie Tucker</span></a>
+    </li>
+    <li class="item resource" data-subjects="vaudeville">
+        <a class="resource-link" href="../item/319.html"><img src="../../../files/asset/3445443fb2b407ab8c7aa365dce79dbb847b2277.jpg" alt=""><span class="resource-name">Fanny Brice</span></a>
+    </li>
+    <li class="item resource" data-subjects="opera">
+        <a class="resource-link" href="../item/326.html"><img src="../../../files/asset/34391baab813b2ee04969f0d0473767a22dad905.jpg" alt=""><span class="resource-name">Enrico Caruso</span></a>
+    </li>
+    <li class="item resource" data-subjects="brass band">
+        <a class="resource-link" href="../item/387.html"><img src="../../../files/asset/2801820a4f7b0c436c120f398bc0e8aa12a48cad.jpg" alt=""><span class="resource-name">John Phillip Sousa</span></a>
+    </li>
+    <li class="item resource" data-subjects="tango">
+        <a class="resource-link" href="../item/403.html"><img src="../../../files/asset/4d85a15082016e67284b35c2158c7b476726bdeb.jpg" alt=""><span class="resource-name">Vernon and Irene Castle</span></a>
+    </li>
+    <li class="item resource" data-subjects="tango">
+        <a class="resource-link" href="../item/414.html"><img src="../../../files/asset/5c17658e8680a249a4bd287a3e73b7c4ff7c049d.jpg" alt=""><span class="resource-name">Celestino Ferrer</span></a>
+    </li>
+    <li class="item resource" data-subjects="tango">
+        <a class="resource-link" href="../item/416.html"><img src="../../../files/asset/14099657f2877989e5c38d18ae9f59add9101b13.png" alt=""><span class="resource-name">Julio De Caro</span></a>
+    </li>
+    <li class="item resource" data-subjects="tango">
+        <a class="resource-link" href="../item/419.html"><img src="../../../files/asset/21afb681e8f278c9b192bce3989ed672ae288476.jpg" alt=""><span class="resource-name">Orquesta Típica Fresedo</span></a>
+    </li>
+    <li class="item resource" data-subjects="tango">
+        <a class="resource-link" href="../item/422.html"><img src="../../../files/asset/8fb0282aca9e39dd9000ab0270102757962e9de4.jpg" alt=""><span class="resource-name">Juan Carlos Cobián</span></a>
+    </li>
+    <li class="item resource" data-subjects="">
+        <a class="resource-link" href="../item/537.html"><img src="../../../files/asset/1ad1568f5c8b1d073a813b256ba78aaa149bc6f2.png" alt=""><span class="resource-name">Max Glücksmann</span></a>
+    </li>
+    <li class="item resource" data-subjects="tango">
+        <a class="resource-link" href="../item/541.html"><img src="../../../files/asset/19dea2962d122131af6fd1257d9d30ebd6ceb4f3.png" alt=""><span class="resource-name">Rosita Quiroga</span></a>
+    </li>
+    <li class="item resource" data-subjects="tango">
+        <a class="resource-link" href="../item/545.html"><img src="../../../files/asset/aaa387d0cb87bf0d1fec21d8c8241bb37f168ebf.jpg" alt=""><span class="resource-name">Ignacio Corsini</span></a>
+    </li>
+    <li class="item resource" data-subjects="tango">
+        <a class="resource-link" href="../item/548.html"><img src="../../../files/asset/4cb63f0ebbb07ee45bc7b8c998498b3d74ac5c16.jpg" alt=""><span class="resource-name">Carlos Gardel</span></a>
+    </li>
+    <li class="item resource" data-subjects="tango">
+        <a class="resource-link" href="../item/553.html"><img src="../../../files/asset/591acfd77706629ec1eaf2b30db6b8b7b1c9e299.jpg" alt=""><span class="resource-name">Roberto Firpo</span></a>
+    </li>
+    <li class="item resource" data-subjects="tango">
+        <a class="resource-link" href="../item/560.html"><img src="../../../files/asset/b28ba8a7e286e37c8fbe370bb4aeddaee3100e5f.jpg" alt=""><span class="resource-name">Francisco Canaro</span></a>
+    </li>
+    <li class="item resource" data-subjects="blues">
+        <a class="resource-link" href="../item/588.html"><img src="../../../files/asset/2ef3d61772c1708698d577de4cd4c7abf1ff5209.jpg" alt=""><span class="resource-name">Al Bernard</span></a>
+    </li>
+    <li class="item resource" data-subjects="vaudeville|ethnic humor">
+        <a class="resource-link" href="../item/589.html"><img src="../../../files/asset/2e3d580c5cdc447435a264aeef3780ae8146e609.jpg" alt=""><span class="resource-name">Patrick &quot;Patsy&quot; Touhey</span></a>
+    </li>
+    <li class="item resource" data-subjects="jazz">
+        <a class="resource-link" href="../item/736.html"><img src="../../../files/asset/ac99f6532bbb772692caa2fd0f9638c6f861ca02.png" alt=""><span class="resource-name">Jelly Roll Morton</span></a>
+    </li>
+    <li class="item resource" data-subjects="jazz">
+        <a class="resource-link" href="../item/741.html"><img src="../../../files/asset/9f56d738f58fe3d979dc59894b2f613d1aab388b.jpg" alt=""><span class="resource-name">King Oliver&#x27;s Creole Jazz Band</span></a>
+    </li>
+    <li class="item resource" data-subjects="">
+        <a class="resource-link" href="../item/759.html"><img src="../../../files/asset/a2b225ac450f39990d9b7bc1aa18af50407f17c2.jpg" alt=""><span class="resource-name">Sexteto Habanero Godínez</span></a>
+    </li>
+    <li class="item resource" data-subjects="choro, samba|brazilian music">
+        <a class="resource-link" href="../item/784.html"><img src="../../../files/asset/27e93c116be27d4294f0817f8491a6ec352bf086.jpg" alt=""><span class="resource-name">Oito Batutas</span></a>
+    </li>
+    <li class="item resource" data-subjects="">
+        <a class="resource-link" href="../item/1046.html"><img src="../../../files/asset/d4559e8e44a449e4fb34a520148b2b6da14d9c2c.jpg" alt=""><span class="resource-name">Nathaniel Shilkret</span></a>
+    </li>
+    <li class="item resource" data-subjects="artists|blues">
+        <a class="resource-link" href="../item/1081.html"><img src="../../../files/asset/40bbf290f295bc390810b99b9cb21afde09597a8.jpg" alt=""><span class="resource-name">Gladys Bentley</span></a>
+    </li>
+    <li class="item resource" data-subjects="brazilian music">
+        <a class="resource-link" href="../item/1083.html"><img src="../../../files/asset/e187d24c541cbc5f63c8978bf48f1de0a44dde62.jpg" alt=""><span class="resource-name">Donga</span></a>
+    </li>
+    <li class="item resource" data-subjects="brazilian music">
+        <a class="resource-link" href="../item/1085.html"><img src="../../../files/asset/6bdacb01613e5c7bb2519ba72f05292cc2b33b79.jpg" alt=""><span class="resource-name">Pixinguinha</span></a>
+    </li>
+    <li class="item resource" data-subjects="jazz">
+        <a class="resource-link" href="../item/1089.html"><img src="/files/square/84b718f8c9d24aa4dbc5a6d4f44ed659121d37b4.jpg" alt=""><span class="resource-name">Luis Russell</span></a>
+    </li>
+    <li class="item resource" data-subjects="vaudeville">
+        <a class="resource-link" href="../item/1141.html"><img src="/files/square/0f546a58ef82dc3ec0ad8c06b462bbae7d58ada8.jpg" alt=""><span class="resource-name">S.H. Dudley</span></a>
+    </li>
+    <li class="item resource" data-subjects="brazilian music">
+        <a class="resource-link" href="../item/1192.html"><img src="/files/square/246ee7b2b2217e5afa450e2b58c171a8d0b9697d.jpg" alt=""><span class="resource-name">Eduardo das Neves</span></a>
+    </li>
+        </ul>
+    </div>
 </div>
-        </div>
+<script src="../../../themes/hearing_americas/asset/js/artist-facets.js"></script>
+        </main>
         <footer>
-                        <footer>
   <div class="div-footer">
     <p style="margin-bottom: 0; "> Hearing the Americas is a project of the George Mason University with funding from the National Endowment for the Humanities. </p> 
     <p> Descriptive metadata and transcriptions are available for use under the terms of the Creative Commons by Attribution License (4.0). <br> Permissions for use of the document images are held by their original repository.</p>
     <div class="div-foot-img">
       <div>
-        <img src="../../../themes/hearing_americas/asset/img/rrchnm.png">
+        <img src="../../../themes/hearing_americas/asset/img/rrchnm.png" alt="Roy Rosenzweig Center for History and New Media">
       </div>
       <div>
-        <img src="../../../themes/hearing_americas/asset/img/neh.png">
+        <img src="../../../themes/hearing_americas/asset/img/neh.png" alt="National Endowment for the Humanities">
       </div>     
     </div>
   </div>
-</footer>            <!-- Matomo -->
+            <!-- Matomo -->
 <script>
   var _paq = window._paq = window._paq || [];
   /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
