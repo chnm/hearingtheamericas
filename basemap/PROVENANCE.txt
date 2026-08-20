@@ -1,0 +1,54 @@
+protomaps-basemap.pmtiles   34.3 MB, zoom 0-8
+  Basemap layers derived from OpenStreetMap and Natural Earth.
+  (c) OpenStreetMap contributors, Open Database License (ODbL).
+  https://www.openstreetmap.org/copyright
+
+  Two extracts of the Protomaps daily planet build
+  https://build.protomaps.com/20260819.pmtiles  (z0-15, ~120 GB)
+  merged into one archive:
+
+    pmtiles extract <planet> world-z0-5.pmtiles --maxzoom=5
+    pmtiles extract <planet> us-z6-8.pmtiles \
+        --bbox=-98.5,28.5,-73.0,43.0 --minzoom=6 --maxzoom=8
+    pmtiles merge world-z0-5.pmtiles us-z6-8.pmtiles \
+        protomaps-basemap.pmtiles
+    pmtiles verify protomaps-basemap.pmtiles
+
+  go-pmtiles 1.31.2. Both halves are needed:
+
+  - The world at z0-5 (15 MB) because all four maps open by fitting their
+    markers, and the widest marker set spans Texas to Massachusetts -- about
+    23 degrees of longitude, which Leaflet fits at roughly z4 in a desktop
+    viewport. A US-only extract leaves the surrounding ocean and the rest of
+    the continent blank at exactly the zoom the maps open at.
+
+  - The eastern and central United States at z6-8 (19 MB) because that is
+    where every marker is. All 48 mapping markers on this site fall inside
+    lat 29.30-42.33, lng -97.52 to -74.01: vaudeville and African-American
+    theatre circuits, and the towns Victor and Columbia sent scouts to. The
+    bbox above is that envelope with about a degree of padding.
+
+  z8 is where county outlines, the interstate network and town names resolve
+  -- enough to say which city a theatre was in, which is the whole claim these
+  maps make. Buying more depth costs a lot over an area this wide: the same
+  bbox at z0-9 is 71 MB and at z0-10 is 214 MB, because tile count quadruples
+  per level. The renderer over-zooms past z8, so panning and zooming still
+  work; the geometry is just not re-cut. modules/Mapping/asset/js/omeka-basemap.js
+  caps the map controls at z10, two levels past the data.
+
+  KNOWN BUG: `pmtiles extract` with --bbox crashes with
+  `fatal error: concurrent map writes` -- a data race in its HTTP range reader
+  -- roughly half the time. It fails loudly and leaves a headerless output
+  file, so it cannot corrupt a good archive silently: retry until
+  `pmtiles verify` passes.
+
+protomaps-leaflet 5.1.0 (MIT)
+  modules/Mapping/asset/vendor/protomaps-leaflet.js
+  https://unpkg.com/protomaps-leaflet@5.1.0/dist/protomaps-leaflet.js
+  sha256 26af014f7b1af308ec120b791cff76657bb9c3383633b52033e6edf9e5e4cdb5
+  The same version and build the 20.rrchnm.org and virginiaslostat archives
+  vendor.
+
+Refreshing the basemap is optional and rarely worth it: these are maps of
+theatre circuits and recording expeditions between 1900 and 1926, and OSM's
+coverage of those places does not change in ways that matter here.

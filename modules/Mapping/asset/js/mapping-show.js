@@ -3,14 +3,8 @@ $(document).ready( function() {
 var mappingMap = $('#mapping-map');
 var mappingData = mappingMap.data('mapping');
 
-var map = L.map('mapping-map');
+var map = L.map('mapping-map', {maxZoom: OmekaBasemap.maxZoom});
 var markers = new L.FeatureGroup();
-var baseMaps = {
-    'Streets': L.tileLayer.provider('OpenStreetMap.Mapnik'),
-    'Grayscale': L.tileLayer.provider('CartoDB.Positron'),
-    'Satellite': L.tileLayer.provider('Esri.WorldImagery'),
-    'Terrain': L.tileLayer.provider('Esri.WorldShadedRelief')
-};
 
 var defaultBounds = null;
 if (mappingData && mappingData['o-module-mapping:bounds'] !== null) {
@@ -28,9 +22,12 @@ $('.mapping-marker-popup-content').each(function() {
     markers.addLayer(marker);
 });
 
-map.addLayer(baseMaps['Streets']);
+OmekaBasemap.addTo(map);
 map.addLayer(markers);
-map.addControl(new L.Control.Layers(baseMaps));
+// The layer control offered four basemaps -- OpenStreetMap.Mapnik,
+// CartoDB.Positron, Esri.WorldImagery and Esri.WorldShadedRelief -- all
+// fetched from other people's tile servers. There is one basemap now, so a
+// control that lets you choose between four copies of it would say nothing.
 map.addControl(new L.Control.FitBounds(markers));
 
 var setView = function() {

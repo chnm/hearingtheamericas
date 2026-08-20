@@ -4,7 +4,8 @@ function MappingBlock(mapDiv, timelineDiv) {
     var markerData = mapDiv.data('markers');
     var map = new L.map(mapDiv[0], {
         minZoom: mapData.min_zoom ? mapData.min_zoom : 0,
-        maxZoom: mapData.max_zoom ? mapData.max_zoom : 19,
+        // Was 19. The self-hosted basemap holds data to z8; see omeka-basemap.js.
+        maxZoom: mapData.max_zoom ? Math.min(mapData.max_zoom, OmekaBasemap.maxZoom) : OmekaBasemap.maxZoom,
     });
     var timelineData = timelineDiv.length ? timelineDiv.data('data') : null;
     var timelineOptions = timelineDiv.length ? timelineDiv.data('options') : null;
@@ -12,19 +13,10 @@ function MappingBlock(mapDiv, timelineDiv) {
     var markers = new L.markerClusterGroup();
     var markersByItem = {};
 
-    // Set base map and grouped overlay layers.
-    var defaultProvider;
-    try {
-        defaultProvider = L.tileLayer.provider(mapData['basemap_provider']);
-    } catch (error) {
-        defaultProvider = L.tileLayer.provider('OpenStreetMap.Mapnik');
-    }
-    var baseMaps = {
-        'Default': defaultProvider,
-        'Streets': L.tileLayer.provider('OpenStreetMap.Mapnik'),
-        'Satellite': L.tileLayer.provider('Esri.WorldImagery'),
-        'Terrain': L.tileLayer.provider('Esri.WorldShadedRelief')
-    };
+    // Set base map and grouped overlay layers. There is one self-hosted
+    // basemap now instead of four third-party providers; see omeka-basemap.js.
+    // Every map block on this site was authored with basemap_provider null,
+    // which meant the module's own OpenStreetMap.Mapnik default.
     var noOverlayLayer = new L.GridLayer();
     var groupedOverlays = {'Overlays': {'No overlay': noOverlayLayer}};
 
@@ -89,7 +81,7 @@ function MappingBlock(mapDiv, timelineDiv) {
     setDefaultView();
 
     // Add base map and grouped WMS overlay layers.
-    map.addLayer(baseMaps['Default']);
+    OmekaBasemap.addTo(map);
     map.addLayer(noOverlayLayer);
     $.each(mapData['wms'], function(index, data) {
         wmsLayer = L.tileLayer.wms(data.base_url, {
@@ -106,9 +98,14 @@ function MappingBlock(mapDiv, timelineDiv) {
         }
         groupedOverlays['Overlays'][data.label] = wmsLayer;
     });
-    L.control.groupedLayers(baseMaps, groupedOverlays, {
-        exclusiveGroups: ['Overlays']
-    }).addTo(map);
+    // With one basemap and no WMS overlays the control would be a radio group
+    // offering a single choice, so it is only added when there is something to
+    // choose between. No map block on this site defines a WMS overlay.
+    if (mapData['wms'].length) {
+        L.control.groupedLayers({'Map': null}, groupedOverlays, {
+            exclusiveGroups: ['Overlays']
+        }).addTo(map);
+    }
 
     // Handle the overlay opacity control.
     map.on('overlayadd', function(e) {
