@@ -1,8 +1,11 @@
 @font-face {
     font-family: "League Spartan";
-    src: url("../font/leaguespartan-bold.eot");
-    src: url("../font/leaguespartan-bold.eot%3F") format("embedded-opentype"), url("../font/leaguespartan-bold.woff2") format("woff2"), url("../font/leaguespartan-bold.woff") format("woff"),
-        url("../font/leaguespartan-bold.ttf") format("truetype"), url("../font/leaguespartan-bold.svg") format("svg");
+    /* woff2 + woff only: the .eot, .ttf and .svg sources served IE8 and
+       Android 4, and the crawl had saved the .eot a second time under the
+       literal filename "leaguespartan-bold.eot?", which no web server can
+       return because the "?" starts a query string. */
+    src: url("../font/leaguespartan-bold.woff2") format("woff2"),
+        url("../font/leaguespartan-bold.woff") format("woff");
     font-weight: bold;
     font-style: normal;
 }
@@ -105,7 +108,10 @@
         background-color: #E2D7C5;
     }
 
-    #content>h1:first-child {
+    #content>h1:not([class*="heading-"]):first-child,
+
+
+    #content>.heading-1:first-child {
         position: relative;
         margin: 30px auto 60px;
         text-align: center;
@@ -113,7 +119,10 @@
         padding: 0 0 15px 0;
     }
 
-    #content>h1:first-child:after {
+    #content>h1:not([class*="heading-"]):first-child:after,
+
+
+    #content>.heading-1:first-child:after {
         position: absolute;
         content: "";
         bottom: 0;
@@ -328,7 +337,10 @@
         display: block;
     }
 
-    .site-title h1 {
+    .site-title h1:not([class*="heading-"]),
+
+
+    .site-title .heading-1 {
         font-size: 20px;
         line-height: 30px;
         margin: 0 0 15px;
@@ -386,7 +398,10 @@
         margin-bottom: 30px;
     }
 
-    .item-head h2 {
+    .item-head h2:not([class*="heading-"]),
+
+
+    .item-head .heading-2 {
         margin-bottom: 0;
     }
 
@@ -405,7 +420,10 @@
         margin: 0 15px 0 0;
     }
 
-    .linked-resource h4 {
+    .linked-resource h4:not([class*="heading-"]),
+
+
+    .linked-resource .heading-4 {
         margin-bottom: 7.5px;
         text-transform: uppercase;
         font-size: 17.5px;
@@ -565,14 +583,20 @@
         background-color: rgba(196, 225, 156, 0.2);
     }
 
-    .home.page .left.file h3 {
+    .home.page .left.file h3:not([class*="heading-"]),
+
+
+    .home.page .left.file .heading-3 {
         margin-top: 30px;
         font-size: 20px;
         line-height: 30px;
         margin-bottom: 0;
     }
 
-    .home.page .left.file h3 a {
+    .home.page .left.file h3:not([class*="heading-"]) a,
+
+
+    .home.page .left.file .heading-3 a {
         text-align: left;
         padding: 0 30px;
     }
@@ -697,8 +721,16 @@
         display: none;
     }
 
-    .blocks>h2:first-child,
-    .blocks>h2:first-child+h2 {
+    .blocks>h2:not([class*="heading-"]):first-child,
+
+
+    .blocks>.heading-2:first-child,
+
+
+    .blocks>h2:not([class*="heading-"]):first-child+h2:not([class*="heading-"]),
+
+
+    .blocks>.heading-2:first-child+.heading-2 {
         position: relative;
         margin: 30px auto 60px;
         text-align: center;
@@ -706,8 +738,16 @@
         padding: 0 0 15px 0;
     }
 
-    .blocks>h2:first-child:after,
-    .blocks>h2:first-child+h2:after {
+    .blocks>h2:not([class*="heading-"]):first-child:after,
+
+
+    .blocks>.heading-2:first-child:after,
+
+
+    .blocks>h2:not([class*="heading-"]):first-child+h2:not([class*="heading-"]):after,
+
+
+    .blocks>.heading-2:first-child+.heading-2:after {
         position: absolute;
         content: "";
         bottom: 0;
@@ -718,12 +758,18 @@
         background-color: rgba(58, 46, 46, 0.2);
     }
 
-    .blocks>h2:first-child+h2 {
+    .blocks>h2:not([class*="heading-"]):first-child+h2:not([class*="heading-"]),
+
+
+    .blocks>.heading-2:first-child+.heading-2 {
         font-size: 50px;
         line-height: 60px;
     }
 
-    .blocks>h2:first-child+h2:after {
+    .blocks>h2:not([class*="heading-"]):first-child+h2:not([class*="heading-"]):after,
+
+
+    .blocks>.heading-2:first-child+.heading-2:after {
         content: none;
     }
 
@@ -752,8 +798,16 @@
         text-align: center;
     }
 
-    .item-showcase h3,
-    .file h3 {
+    .item-showcase h3:not([class*="heading-"]),
+
+
+    .item-showcase .heading-3,
+
+
+    .file h3:not([class*="heading-"]),
+
+
+    .file .heading-3 {
         margin-top: 0;
         font-size: 15px;
         line-height: 30px;
@@ -770,7 +824,10 @@
         margin: 30px 0;
     }
 
-    ul.resource-list h4 {
+    ul.resource-list h4:not([class*="heading-"]),
+
+
+    ul.resource-list .heading-4 {
         margin: 7.5px 0 0;
         font-size: 15px;
     }
@@ -810,7 +867,10 @@
         flex-wrap: wrap;
     }
 
-    .page.genres .blocks>h2:first-child {
+    .page.genres .blocks>h2:not([class*="heading-"]):first-child,
+
+
+    .page.genres .blocks>.heading-2:first-child {
         max-width: none;
         width: 100%;
     }
@@ -846,7 +906,10 @@
         max-width: 700px;
     }
 
-    .page.genres .genre h3 {
+    .page.genres .genre h3:not([class*="heading-"]),
+
+
+    .page.genres .genre .heading-3 {
         margin-bottom: 7.5px;
     }
 
@@ -858,7 +921,10 @@
         margin-bottom: 30px;
     }
 
-    .page.genres .genre h3+p {
+    .page.genres .genre h3:not([class*="heading-"])+p,
+
+
+    .page.genres .genre .heading-3+p {
         margin-top: 7.5px;
     }
 
@@ -867,7 +933,10 @@
         max-width: 700px;
     }
 
-    .results h2 {
+    .results h2:not([class*="heading-"]),
+
+
+    .results .heading-2 {
         margin-bottom: 0;
     }
 
@@ -987,7 +1056,7 @@
         width: 280px;
     }
 
-    #explore-cards {
+    .explore-cards {
         position: relative;
         padding: 20px;
         font-size: 16px;
@@ -1052,7 +1121,10 @@
         justify-content: space-evenly;
     }
 
-    .explore-spacing h1 {
+    .explore-spacing h1:not([class*="heading-"]),
+
+
+    .explore-spacing .heading-1 {
         margin-bottom: 30px;
     }
 
@@ -1061,7 +1133,7 @@
         padding-top: 40px;
     }
 
-    #explore-cards p {
+    .explore-cards p {
         font-size: 15px;
     }
 
@@ -1113,7 +1185,10 @@
         flex-direction: row;
     }
 
-    .div-banner h2 {
+    .div-banner h2:not([class*="heading-"]),
+
+
+    .div-banner .heading-2 {
         margin-bottom: 0px;
         margin-left: -125px;
         font-size: 15px;
@@ -1166,7 +1241,10 @@
         display: block;
     }
 
-    .shelf2 h3 {
+    .shelf2 h3:not([class*="heading-"]),
+
+
+    .shelf2 .heading-3 {
         font-size: 8px;
         margin-left: 10px;
         margin-right: 10px;
@@ -1178,7 +1256,10 @@
         display: block;
     }
 
-    .shelf3 h3 {
+    .shelf3 h3:not([class*="heading-"]),
+
+
+    .shelf3 .heading-3 {
         font-size: 8px;
         margin-left: 10px;
         margin-right: 10px;
@@ -1498,7 +1579,10 @@
         margin-right: 10px;
     }
 
-    .styles-block h2 {
+    .styles-block h2:not([class*="heading-"]),
+
+
+    .styles-block .heading-2 {
         font-size: 20px;
         color: #b13a1a;
         margin-left: 10px;
@@ -1585,7 +1669,10 @@
         display: block;
     }
 
-    .shelf2 h3 {
+    .shelf2 h3:not([class*="heading-"]),
+
+
+    .shelf2 .heading-3 {
         font-size: 14px;
         margin-left: 20px;
         margin-right: 20px;
@@ -1597,7 +1684,10 @@
         display: block;
     }
 
-    .shelf3 h3 {
+    .shelf3 h3:not([class*="heading-"]),
+
+
+    .shelf3 .heading-3 {
         font-size: 14px;
         margin-left: 20px;
         margin-right: 20px;
@@ -1679,7 +1769,10 @@
         padding: 7.5px 30px;
     }
 
-    .site-title h1 {
+    .site-title h1:not([class*="heading-"]),
+
+
+    .site-title .heading-1 {
         margin: 15px 15px 0 0;
     }
 
@@ -1774,7 +1867,10 @@
         width: 100%;
     }
 
-    .property h4 {
+    .property h4:not([class*="heading-"]),
+
+
+    .property .heading-4 {
         width: 50%;
         padding-right: 15px;
         margin: 0;
@@ -1855,7 +1951,10 @@
         margin: 0 0 30px;
     }
 
-    #linked-filter h4 {
+    #linked-filter h4:not([class*="heading-"]),
+
+
+    #linked-filter .heading-4 {
         margin: 0;
         font-weight: normal;
         font-size: 15px;
@@ -1871,11 +1970,33 @@
         padding: 0 30px;
     }
 
-    .blocks>h1,
-    .blocks>h2,
-    .blocks>h3,
-    .blocks>h4,
+    .blocks>h1:not([class*="heading-"]),
+
+
+    .blocks>.heading-1,
+
+
+    .blocks>h2:not([class*="heading-"]),
+
+
+    .blocks>.heading-2,
+
+
+    .blocks>h3:not([class*="heading-"]),
+
+
+    .blocks>.heading-3,
+
+
+    .blocks>h4:not([class*="heading-"]),
+
+
+    .blocks>.heading-4,
+
+
     .blocks>p,
+
+
     .blocks>ul {
         max-width: 700px;
         margin-left: auto;
@@ -2078,7 +2199,7 @@
         padding-top: 20px;
     }
 
-    #explore-cards {
+    .explore-cards {
         position: relative;
         padding: 20px;
         font-size: 16px;
@@ -2151,7 +2272,10 @@
         font-size: 20px;
     }
 
-    .explore-spacing h1 {
+    .explore-spacing h1:not([class*="heading-"]),
+
+
+    .explore-spacing .heading-1 {
         margin-bottom: 30px;
     }
 
@@ -2160,7 +2284,7 @@
         padding-top: 0;
     }
 
-    #explore-cards p {
+    .explore-cards p {
         font-size: 15px;
     }
 
@@ -2212,7 +2336,10 @@
         font-size: 20px;
     }
 
-    .div-banner h2 {
+    .div-banner h2:not([class*="heading-"]),
+
+
+    .div-banner .heading-2 {
         margin-bottom: 0px;
         margin-left: 140px;
         font-size: 25px;
@@ -2311,7 +2438,10 @@
         display: none;
     }
 
-    .shelf2 h3 {
+    .shelf2 h3:not([class*="heading-"]),
+
+
+    .shelf2 .heading-3 {
         font-size: 14px;
         margin-left: 20px;
         margin-right: 20px;
@@ -2323,7 +2453,10 @@
         display: none;
     }
 
-    .shelf3 h3 {
+    .shelf3 h3:not([class*="heading-"]),
+
+
+    .shelf3 .heading-3 {
         font-size: 14px;
         margin-left: 20px;
         margin-right: 20px;
@@ -2530,7 +2663,7 @@
         padding-top: 40px;
     }
 
-    #explore-cards {
+    .explore-cards {
         position: relative;
         padding: 20px;
         font-size: 16px;
@@ -2604,7 +2737,10 @@
         font-size: 20px;
     }
 
-    .explore-spacing h1 {
+    .explore-spacing h1:not([class*="heading-"]),
+
+
+    .explore-spacing .heading-1 {
         margin-bottom: 30px;
     }
 
@@ -2613,7 +2749,7 @@
         padding-top: 0;
     }
 
-    #explore-cards p {
+    .explore-cards p {
         font-size: 15px;
     }
 
@@ -2636,7 +2772,10 @@
         flex-direction: row;
     }
 
-    .div-banner h2 {
+    .div-banner h2:not([class*="heading-"]),
+
+
+    .div-banner .heading-2 {
         margin-bottom: 0px;
         margin-left: 140px;
         font-size: 25px;

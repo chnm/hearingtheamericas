@@ -1,0 +1,385 @@
+/* WCAG 2.2 AA repairs for the hearingtheamericas.org archive.
+ *
+ * Loaded last, after style.css and the site's own css-editor.css, so it can
+ * restate what the theme rendered without editing the theme.
+ *
+ * Two kinds of rule live here. The first restate the theme's own rendering for
+ * markup this retrofit changed, so that fixing the document's structure did
+ * not change a single pixel of it. The second are the repairs themselves.
+ * Each is commented with the success criterion it answers.
+ */
+
+/* ==========================================================================
+   1. Rendering restated
+   ========================================================================== */
+
+/* Headings.
+ *
+ * The theme made the site title the <h1> of all 963 pages, so no page's <h1>
+ * said anything about that page and its content started at <h2>; beneath that
+ * the page-block editor skipped levels freely -- h2 -> h4 on 377 of them. The
+ * headings are renumbered now so that none is skipped (1.3.1 Info and
+ * Relationships), and each renumbered heading carries a heading-N class naming
+ * the level it used to be.
+ *
+ * These rules restate what that level rendered as: the theme's font-family,
+ * font-size and line-height, and the browser's default margins, which are
+ * expressed in em and so have to move with the font-size rather than being
+ * inherited from whatever tag the heading now uses. font-weight is bold for
+ * every level in every browser's default stylesheet, so it needs no rule. */
+
+.heading-1, .heading-2, .heading-3 { font-family: "League Spartan", sans-serif; }
+.heading-4, .heading-5, .heading-6 { font-family: "Montserrat", sans-serif; }
+
+.heading-1 { font-size: 18px;   margin: 0.67em 0; }
+.heading-2 { font-size: 18px;   margin: 0.83em 0; }
+.heading-3 { font-size: 1.17em; margin: 1em 0; }
+.heading-4 { font-size: 1em;    margin: 1.33em 0; }
+.heading-5 { font-size: 0.83em; margin: 1.67em 0; }
+.heading-6 { font-size: 0.67em; margin: 2.33em 0; }
+
+/* line-height has to be restated as well, and at every level. The theme sets
+   it on h1, h2 and h3 above 800px only, so a heading that renders as an h4 has
+   always inherited the body's 30px -- but the *element* it is now might be an
+   h2, which would pick up that 45px. `inherit` is what all six had below 800px
+   and what levels 4 to 6 had above it. */
+.heading-1, .heading-2, .heading-3,
+.heading-4, .heading-5, .heading-6 { line-height: inherit; }
+
+@media screen and (min-width: 800px) {
+    .heading-1 { font-size: 30px;   line-height: 60px; }
+    .heading-2 { font-size: 25px;   line-height: 45px; }
+    .heading-3 { font-size: 22.5px; line-height: 30px; }
+    .heading-4 { font-size: 20px; }
+}
+
+/* .item-head h2 was the item title on every resource page; it is the h1 now. */
+.item-head .heading-2 { margin-bottom: 0; }
+
+/* The site title in the header. It was the <h1> of every page; it is a <p> on
+   the 963 pages that have a heading of their own, which is all of them. These
+   restate .site-title h1 exactly, including the base and >=800px margins and
+   the heading font-family it inherited from the h1,h2,h3 rule. */
+.site-title-text {
+    font-family: "League Spartan", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 30px;
+    margin: 0 0 15px;
+    text-align: center;
+}
+
+@media screen and (min-width: 800px) {
+    .site-title-text { margin: 15px 15px 0 0; }
+}
+
+/* ==========================================================================
+   2. Repairs
+   ========================================================================== */
+
+/* 1.4.1 Use of Color.
+ *
+ * Links are #b13a1a with text-decoration: none, and the body text they sit in
+ * is #3a2e2e. That is 2.16:1 between the two -- well under the 3:1 that colour
+ * alone needs -- so in the middle of a paragraph a link was distinguished by
+ * nothing a colour-blind reader could see.
+ *
+ * Underlines are restored across the content region, the footer and the two
+ * banners, and taken back off in the places where a link sits among nothing
+ * but other links, wraps an image, or is drawn as a button: menus, breadcrumbs,
+ * page-to-page pagination, browse lists, resource links, item showcases, the
+ * flip cards, the map popups and the two funding logos. Restoring them only
+ * inside <p> and <li> would not have been enough -- this site puts prose
+ * straight into styled <div>s, and its bibliographies into <cite>.
+ *
+ * Every selector here is written against :link and :visited rather than the
+ * bare element. The theme's own rule is `a:link { text-decoration: none }`,
+ * which outranks a plain descendant selector however many ancestors it names.
+ */
+main a:link,
+main a:visited,
+footer a:link,
+footer a:visited,
+.notice div a:link,
+.notice div a:visited,
+#content-warning-banner a:link,
+#content-warning-banner a:visited {
+    text-decoration: underline;
+}
+
+main a.button:link, main a.button:visited,
+main a.button-outline:link, main a.button-outline:visited,
+main a.button-black:link, main a.button-black:visited,
+main .navigation a:link, main .navigation a:visited,
+main .breadcrumbs a:link, main .breadcrumbs a:visited,
+main .site-page-pagination a:link, main .site-page-pagination a:visited,
+main .resource-list a:link, main .resource-list a:visited,
+main .resource-link:link, main .resource-link:visited,
+main .attachments a:link, main .attachments a:visited,
+main .item-showcase a:link, main .item-showcase a:visited,
+main .assets a:link, main .assets a:visited,
+main .records a:link, main .records a:visited,
+main .flip-card a:link, main .flip-card a:visited,
+main .browse-controls a:link, main .browse-controls a:visited,
+main .mapping-marker-popup-content a:link, main .mapping-marker-popup-content a:visited,
+main .media-render a:link, main .media-render a:visited,
+main a[aria-hidden="true"]:link, main a[aria-hidden="true"]:visited,
+footer .div-foot-img a:link, footer .div-foot-img a:visited,
+.notice-logo:link, .notice-logo:visited {
+    text-decoration: none;
+}
+
+/* The exception to the exception: the heading link on each showcase card, and
+   the caption under it, are the card's name -- but the bibliography entries on
+   the Notes pages are prose in a <cite>, and those keep their underline. */
+main li cite a:link,
+main li cite a:visited {
+    text-decoration: underline;
+}
+
+/* Hover and focus keep the underline everywhere, including on the links that
+   do not carry one at rest -- a non-colour cue for the pointer and keyboard
+   states, which is what technique G183 asks for. */
+main a:hover, main a:focus,
+footer a:hover, footer a:focus,
+.notice a:hover, .notice a:focus,
+#content-warning-banner a:hover,
+#content-warning-banner a:focus,
+header a:hover, header a:focus {
+    text-decoration: underline;
+}
+
+/* The RRCHNM wordmark in the archive banner is a link whose whole content is
+   an image; an underline under it is noise, and the text link beside it goes
+   to the same place and keeps its own. */
+.notice-logo:hover,
+.notice-logo:focus,
+header .site-title:hover,
+header .site-title:focus {
+    text-decoration: none;
+}
+
+/* 1.4.3 Contrast (Minimum).
+ *
+ * a:hover and a:active were #dd4921, which is 4.16:1 on white -- under the
+ * 4.5:1 that 20px non-bold body text needs. Contrast applies in every state,
+ * not just at rest. #d0451f is the same hue and saturation three points darker
+ * in lightness: 4.61:1 on white and 4.51:1 on the #f6f1e9 panels, and
+ * indistinguishable from the original at a glance. Automated checkers do not
+ * test hover states, so this is a repair no audit tool will report. */
+a:active,
+a:hover {
+    color: #d0451f;
+}
+
+/* 2.4.7 Focus Visible.
+ *
+ * The theme defines no focus styling anywhere except the skip link, so the
+ * indicator was whatever the browser drew over a link with no underline -- in
+ * several places against a panel of nearly the same colour. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+    outline: 3px solid #b13a1a;
+    outline-offset: 2px;
+}
+
+#skipnav:focus {
+    outline: 3px solid #b13a1a;
+    outline-offset: 2px;
+    z-index: 10;
+}
+
+/* 4.1.2 Name, Role, Value / 2.4.4 Link Purpose.
+ *
+ * Browse listings render each resource twice -- a thumbnail link and a title
+ * link to the same page -- and the thumbnail link's accessible name was an
+ * empty alt. Those links are aria-hidden and out of the tab order now; this
+ * keeps them from drawing a focus ring they can no longer receive. */
+li.resource a[aria-hidden="true"]:focus-visible {
+    outline: none;
+}
+
+/* The four "Explore" cards on the home page all carried id="explore-cards".
+   The theme styled that id, so style.css carries the same rules under a class
+   now and the pages use the class. */
+
+/* Dead embeds. Six Library of Congress recordings were Flash objects whose
+   player and config endpoint are both gone; the note that replaces them should
+   read as an editorial aside, not as body copy. */
+.missing-embed {
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 12px 15px;
+    border-left: 5px solid #e2d7c5;
+    background-color: #f6f1e9;
+    color: #3a2e2e;
+}
+
+/* The Artists page filters its list in the page. [hidden] has to beat the
+   theme's own display rules for list items and for the facet form. */
+[hidden] {
+    display: none !important;
+}
+
+/* The facet control is revealed by script, so a visitor without JavaScript is
+   not shown a filter that cannot filter. Give it room when it is shown. */
+#artist-facets {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+#artist-facets ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#artist-facets label {
+    display: block;
+    padding: 2px 0;
+    cursor: pointer;
+}
+
+/* 1.4.10 Reflow.
+ *
+ * No page should scroll horizontally at 320 CSS pixels. Several did, all for
+ * the same reason: the theme sizes things in fixed pixels and only guards the
+ * result above 1200px, where it sets body { overflow-x: hidden } and hides the
+ * evidence. These rules are scoped so that nothing changes on a desktop
+ * viewport; each was measured before and after in headless Chromium at 1280,
+ * 375 and 320px. */
+
+/* Audio players are 300px wide by default and this site puts up to three of
+   them side by side. The theme only tells them to fill their box above 800px,
+   so below that a 300px player sat in a 130px column. */
+audio {
+    max-width: 100%;
+    width: 100%;
+}
+
+/* The content-notice callout on the home page is a fixed 290px box with 1.25rem
+   of padding outside it, which is wider than a 320px viewport. */
+.alert {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+#get-started-here .alert p {
+    max-width: 100%;
+}
+
+@media screen and (max-width: 480px) {
+    /* The four Explore cards are 300px wide with a 50px right margin. */
+    .explore-cards {
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        min-height: 300px;
+        margin-right: 0;
+    }
+
+    /* The spin discs sit in a column with 100px of margin on each side, so a
+       230px disc had 120px to live in. */
+    .records-welcome {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .page.welcome .flip-card,
+    .flip-card {
+        max-width: 100%;
+    }
+}
+
+/* The hero images are drawn deliberately wider than their container --
+   width: calc(100% + 1.25%) with negative margins -- to reach past the padding
+   the theme puts on .blocks. The percentages do not match that padding at any
+   width: .blocks has no padding below 800px and none again above 1200px, where
+   the extra 1.25% is pure overshoot (8px past each edge of a 1280px viewport),
+   and 30px of padding in between, where 0.625% is 7px. The theme hid the
+   result above 1200px with body { overflow-x: hidden } and let it scroll
+   everywhere else.
+
+   There is in fact no padding to negate at any width: the `.blocks { padding:
+   0 30px }` rule the bleed was written against is overridden four lines later
+   by `.blocks, #content { padding: 0 }`, in the same media block. So the hero
+   is simply 100% wide, which is edge to edge, and nothing hangs off the side.
+   Measured at 320, 375, 800, 1000, 1150, 1280 and 1600px. */
+.assets.hero-image,
+.assets.hero-image-spins {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* The record-shelf rows on the Spins pages put a 250px flip card and its vinyl
+   images in a flex row inside 30px side margins, which needs more than 320px
+   of viewport. Let the row wrap and the pieces shrink. */
+@media screen and (max-width: 480px) {
+    .records {
+        flex-wrap: wrap;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .records .vinyl img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* Attachment rows on the style and note pages are flex containers whose images
+   keep their intrinsic width, so a row of six record sleeves ran off the side
+   below about 900px. Only the home page told them to fit their column. */
+.file .attachments .item.resource {
+    max-width: 100%;
+}
+
+.file .attachments .item.resource img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 2.4.7 Focus Visible / 2.4.11 Focus Not Obscured.
+ *
+ * The spin discs flip on hover to show the answer and a "learn more" link. Both
+ * faces have backface-visibility: hidden, so the link on the back is focusable
+ * whether or not the card has flipped -- which meant a keyboard user tabbing
+ * through 23 cards put focus on 23 links they could not see. Focus flips the
+ * card now, exactly as hover does. */
+.flip-card:focus-within .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* 1.4.10 Reflow, continued.
+ *
+ * The YouTube embeds in the page-block editor carry width="560" as an
+ * attribute. The theme constrains iframes inside .media-embeds and nowhere
+ * else, so the one on "What musical instrument was invented for use in early
+ * recordings?" ran 240px off the side of a 320px viewport. default.js keeps
+ * the aspect ratio in step on load and resize. */
+main iframe {
+    max-width: 100%;
+}
+
+/* 2.5.8 Target Size (Minimum).
+ *
+ * The genre tags under each record on the Style pages are 12.5px uppercase
+ * links on a 15px line, separated by a " // ". At 375px and below that gives a
+ * 53x15px touch target with 20px of safe space around it, where WCAG 2.2 asks
+ * for 24x24.
+ *
+ * Padding on an inline box grows the hit area without moving the line: the
+ * vertical padding overflows the line box rather than expanding it, and the
+ * horizontal padding is cancelled by an equal negative margin, so the
+ * separators stay exactly where they were. */
+ul.resource-list .genres li .resource-link {
+    padding: 5px 3px;
+    margin: 0 -3px;
+}
