@@ -1,0 +1,36 @@
+Timeline slide images that were hot-linked to third-party hosts.
+
+The home page's timeline was authored in a Google Sheet and rendered by
+TimelineJS loaded from KnightLab's CDN. Its slide images came from two places:
+the site's own Omeka files, which are in the object bucket under
+/files/original/, and the eight images below, which the sheet pointed at other
+people's servers. All eight still resolved when this archive was built. They
+are copied here so that the timeline depends on neither the sheet, nor the
+CDN, nor those eight hosts.
+
+Six are Wikimedia Commons files and one is a Library of Congress IIIF
+derivative; both are stable, openly licensed sources, and the local copies are
+byte-for-byte what those hosts returned. The eighth,
+11-perry-bradford-publishing-co.jpg, comes from friendsofmusichall.org, a
+third party whose terms are not stated -- it was hot-linked by the original
+site and is mirrored here on the same footing. Confirming its licence is a
+curatorial follow-up.
+
+Fetched 2026-08-20.
+
+7a51a81929e31cea8d0186599d4735e707193c3544d9fb869706f1f8f65e238c      97450  11-perry-bradford-publishing-co.jpg
+    <- https://friendsofmusichall.org/wp-content/uploads/2020/08/11-perry-bradford-publishing-co.jpg
+400483868307a4cf13f9cac01c0743ed0f18cd1c57012073a8b3b0d6dd774ee4    5789390  Carbon_microphone-_c._1920s-_Ellis_Electrical_Laboratories_-_Museum_of_Science_a.jpg
+    <- https://upload.wikimedia.org/wikipedia/commons/a/a0/Carbon_microphone%2C_c._1920s%2C_Ellis_Electrical_Laboratories_-_Museum_of_Science_and_Industry_%28Chicago%29_-_DSC06384.JPG
+bab1c233fdd07d06d694624c5bb1078f2c787b2f0da0f69c7e7acf6feafd39fa      58700  Gramophone_berliner2.jpg
+    <- https://upload.wikimedia.org/wikipedia/commons/6/6e/Gramophone_berliner2.jpg
+84f551aa8df16a99b439426cf4f9cf58203a7e02c79f073b210f3183183bc278      71186  Handys_Memphis_Orchestra_1918.jpg
+    <- https://upload.wikimedia.org/wikipedia/commons/a/a9/Handys_Memphis_Orchestra_1918.jpg
+7fe3f0bd641d70f27dd5f5753fe51ab0e7655eae55e6db460f09c1743df7e46c    1080293  Harry_H._Pace.jpg
+    <- https://upload.wikimedia.org/wikipedia/commons/f/fb/Harry_H._Pace.jpg
+4a3ddd58c1f1d4916587f733cb639f796c97c4ef555e5c30bfe4c64d46b9de7c     107356  Victrola_Advertisement_from_1915.jpg
+    <- https://upload.wikimedia.org/wikipedia/commons/6/6a/Victrola_Advertisement_from_1915.jpg
+4a3599ce98706c5a537d7bdf7e29c091677b576c629f97a2369d2ca52635b86a     779364  Xavier_Sager_Le_Tango_4.jpg
+    <- https://upload.wikimedia.org/wikipedia/commons/6/62/Xavier_Sager_Le_Tango_4.jpg
+13f4cbda9bdaf745b5cf48f102d99e99e7d3ad4f7f08500155e28244caf80fe2     434600  loc-g4414m-ct002165-mexico-map.jpg
+    <- https://tile.loc.gov/image-services/iiif/service:gmd:gmd4:g4414:g4414m:ct002165/full/pct:25/0/default.jpg

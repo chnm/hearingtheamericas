@@ -1,0 +1,404 @@
+{
+ "events": [
+  {
+   "start_date": {
+    "year": "1877"
+   },
+   "end_date": {
+    "year": "1877"
+   },
+   "display_date": "1877",
+   "text": {
+    "headline": "Thomas Edison invents the phonograph",
+    "text": "The phonograph was the first audio <a href=\"/s/the-americas/page/note-technology.html\">recording</a> device, and was invented by Thomas Alva Edison (1847-1931). The machine would mechanically record sound on a rotating cylinder, initially covered in thin foil, and would then play the sound back. It took over a decade for the phonograph to be available for purchase. By the early twentieth century, recording cylinders were made of wax or shellac."
+   },
+   "media": {
+    "url": "/files/original/4b393ab355e5919266d0bd461a51914e9c1941df.jpg",
+    "caption": "Thomas Edison sitting next to his invention, the phonograph. (Photo: Matthew Brady, 1878)"
+   },
+   "group": "Recording Technology",
+   "background": {
+    "color": "#121c1b"
+   }
+  },
+  {
+   "start_date": {
+    "year": "1887"
+   },
+   "end_date": {
+    "year": "1887"
+   },
+   "display_date": "1887",
+   "text": {
+    "headline": "Gramophone invented",
+    "text": "German inventor Emil Berliner (1851-1929) first patented his <a href=\"/s/the-americas/page/note-technology.html\">recording</a> device, the gramophone, in 1887. Instead of using recording cylinders, like Edison's phonograph, the gramophone used discs to record and play sounds and music."
+   },
+   "media": {
+    "url": "media/Gramophone_berliner2.jpg",
+    "caption": "Emil Berliner sits next to his invention, the Gramophone (1888)"
+   },
+   "group": "Recording Technology",
+   "background": {
+    "color": "#121c1b"
+   }
+  },
+  {
+   "start_date": {
+    "year": "1900"
+   },
+   "end_date": {
+    "year": "1900"
+   },
+   "display_date": "1900",
+   "text": {
+    "headline": "\"Stroh\" violin patented for use in acoustic recording sessions",
+    "text": "The <a href=\"/s/the-americas/page/stroh-violin.html\">\"Stroh\" violin</a> was designed with a large horn affixed to its side in order to be more easily picked up by recording mechanisms in early sessions."
+   },
+   "media": {
+    "url": "/files/original/223ce70b05a0fbcb090be58ad57ba7276584d914.jpg"
+   },
+   "group": "Recording Technology",
+   "background": {
+    "color": "#121c1b"
+   }
+  },
+  {
+   "start_date": {
+    "year": "1903"
+   },
+   "end_date": {
+    "year": "1903"
+   },
+   "display_date": "1903",
+   "text": {
+    "headline": "Victor Records sends scouts to Mexico City",
+    "text": "From almost the beginning of the recording era, the big companies hoped to open new markets abroad by recording music that would appeal to local consumers. In 1903, the Victor Talking Machine Company sent record “scouts” to Mexico City to record local musicians. This marks the first time <a href=\"/s/the-americas/page/Scouts.html\">Victor sent recording scouts to Latin America</a>."
+   },
+   "group": "Musical Milestones",
+   "background": {
+    "url": "media/loc-g4414m-ct002165-mexico-map.jpg"
+   }
+  },
+  {
+   "start_date": {
+    "year": "1906",
+    "month": "1",
+    "day": "2"
+   },
+   "end_date": {
+    "year": "1906"
+   },
+   "display_date": "1906",
+   "text": {
+    "headline": "Bert Williams records “Nobody”",
+    "text": "In the early twentieth century, <a href=\"/s/the-americas/page/minstrelsy.html\">minstrel</a> shows were one of the most popular forms of entertainment in the US, Europe, and Latin America. Early minstrel shows featured white actors in “blackface,” portraying racist tropes of stereotypically offensive black characters. Eventually, African Americans themselves began to appear in “blackface,” with makeup, performing the same kinds of stereotypical tropes. Minstrel songs, themes, and performance styles show up everywhere in the earliest recorded popular music, like in <a href=\"/s/the-americas/item/187.html\">Bert Williams’s</a> released his song 1906 song “Nobody.”"
+   },
+   "media": {
+    "url": "/files/original/88d6a3bbe28a5c9ea91a66eb29eb2b39fe6c77d2.jpg"
+   },
+   "group": "Musical Milestones",
+   "background": {
+    "color": "#121c1b"
+   }
+  },
+  {
+   "start_date": {
+    "year": "1906",
+    "month": "1",
+    "day": "1"
+   },
+   "end_date": {
+    "year": "1906"
+   },
+   "display_date": "1906",
+   "text": {
+    "headline": "Victrola is introduced",
+    "text": "New Jersey's Victor Talking Machine Company introduced the \"Victrola\" to the consumers in 1906. The patented internal horns were housed in decorative cabinets, which made match the user's home decor, looking more like furniture and less mechanical."
+   },
+   "media": {
+    "url": "media/Victrola_Advertisement_from_1915.jpg",
+    "caption": "Advertisement for Victor's Victrola, 1915.",
+    "credit": "Wikimedia Commons"
+   },
+   "group": "Recording Technology",
+   "background": {
+    "color": "#3a2e2e"
+   }
+  },
+  {
+   "start_date": {
+    "year": "1910"
+   },
+   "end_date": {
+    "year": "1910"
+   },
+   "display_date": "1910",
+   "text": {
+    "headline": "James Reese Europe founds the Clef Club",
+    "text": "<a href=\"/s/the-americas/item/167.html\">James Reese Europe</a> established the <a href=\"/s/the-americas/page/sheet-music.html\">Clef Club</a>, a booking agency and informal union for black musicians in New York. Clef Club musicians were hired to play various styles of music, from ragtime tunes to classical music, often for white audiences."
+   },
+   "media": {
+    "url": "/files/original/ab6cd51c9d9e24974572f968cf720e6db4e0edc3.jpg",
+    "credit": "National Archives and Records Administration via Wikimedia Commons."
+   },
+   "group": "Musical Milestones",
+   "background": {
+    "color": "#121c1b"
+   }
+  },
+  {
+   "start_date": {
+    "year": "1912"
+   },
+   "end_date": {
+    "year": "1912"
+   },
+   "display_date": "1912",
+   "text": {
+    "headline": "Memphis Blues",
+    "text": "The <a href=\"/s/the-americas/page/q-blues.html\">”blues”</a> fad erupted in 1912 with the publication of the sheet music for <a href=\"/s/the-americas/item/71.html\">W.C. Handy’s</a> composition the <a href=\"/s/the-americas/page/memphis-blues.html\">”Memphis Blues.”</a> While the blues started as musical form steeped in the complex histories of African American field calls and folk music, and was then appropriated and used in minstrel shows, the genre went on to have an enormous influence on many of the most iconic genres of the twentieth century -- jazz, country, and rock and roll."
+   },
+   "media": {
+    "url": "media/Handys_Memphis_Orchestra_1918.jpg",
+    "caption": "W.C. Handy is pictured with his Memphis Orchestra ca. 1918, in center rear, wearing a moustache, holding his trumpet.",
+    "credit": "Wikimedia Commons"
+   },
+   "group": "Musical Milestones",
+   "background": {
+    "color": "#121c1b"
+   }
+  },
+  {
+   "start_date": {
+    "year": "1912"
+   },
+   "end_date": {
+    "year": "1912"
+   },
+   "display_date": "1912",
+   "text": {
+    "headline": "Victor and Columbia record calypso",
+    "text": "The first recordings of popular music from the British Caribbean were made in 1912, when Victor and Columbia recorded <a href=\"/s/the-americas/page/british-caribbean.html\">Lovey’s String Band</a>, a group from Trinidad then on tour in the United States. When those records sold well, Victor sent Cheney and Althouse to Port of Spain to record more Trinidadian music. They made 83 recordings on the trip, including the two calypso records on the right, which were released in time for the 1915 carnival season."
+   },
+   "media": {
+    "url": "/files/original/857c60b9d9d42e9751573a04e085a1285b37fd15.jpg"
+   },
+   "group": "Musical Milestones",
+   "background": {
+    "color": "#b13a1a"
+   }
+  },
+  {
+   "start_date": {
+    "year": "1913"
+   },
+   "end_date": {
+    "year": "1913"
+   },
+   "display_date": "1913",
+   "text": {
+    "headline": "Tango fad explodes in Paris",
+    "text": "Beginning in 1913, the <a href=\"/s/the-americas/page/tango.html\">Tango</a> became a major phenomenon in Paris. The music and the dance were made to seem exotic in order to appeal to European and North American audiences. The tango was an influential element in the transnational popular musical milieu during the first two decades of the history of recording, informing developments in the United States, Brazil, and the Caribbean."
+   },
+   "media": {
+    "url": "media/Xavier_Sager_Le_Tango_4.jpg",
+    "credit": "Wikimedia Commons"
+   },
+   "group": "Musical Milestones",
+   "background": {
+    "color": "#b13a1a"
+   }
+  },
+  {
+   "start_date": {
+    "year": "1915"
+   },
+   "end_date": {
+    "year": "1915"
+   },
+   "display_date": "1915",
+   "text": {
+    "headline": "Frank and Helen Ferera sign with Columbia records",
+    "text": "<a href=\"/s/the-americas/page/hawaiian-music.html\">Hawaiian Music</a>\nwas introduced to the world stage at the 1915 Panama-Pacific International Exposition in San Francisco which led to the genre’s global popularity. Native Hawaiian musician <a href=\"/s/the-americas/item/207.html\">Frank Ferera</a> performed at the event and subsequently signed a record contract with Columbia Records, with his wife Helen. Hawaiian musicians had developed a very distinctive style using the ukulele and lap-guitar technique that would be extremely important to popular music worldwide."
+   },
+   "media": {
+    "url": "/files/original/c1ebcc394ebf809e3345dba13319e34cf08b9de8.jpg"
+   },
+   "group": "Musical Milestones",
+   "background": {
+    "color": "#121c1b"
+   }
+  },
+  {
+   "start_date": {
+    "year": "1917"
+   },
+   "end_date": {
+    "year": "1917"
+   },
+   "display_date": "1917",
+   "text": {
+    "headline": "First Samba recording produced in Brazil",
+    "text": "The Brazilian singer Manuel Pedro dos Santos, known as Baiano, recorded “Pelo telefone” (“On the Telephone”) for Casa Edison on behalf of Odeon Records. Baiano describes the song as a \"carnival samba\" in his spoken introduction to the recording. As a result, \"Pelo telefone\" became known as the first <a href=\"/s/the-americas/page/year.html\">samba</a>, even though it lacks the beat we now associate with the <a href=\"/s/the-americas/page/samba.html\">genre</a>."
+   },
+   "group": "Musical Milestones",
+   "background": {
+    "url": "/files/original/466b9d0b8704429c4924400642f88801bf63d96c.jpeg"
+   }
+  },
+  {
+   "start_date": {
+    "year": "1917"
+   },
+   "end_date": {
+    "year": "1917"
+   },
+   "display_date": "1917",
+   "text": {
+    "headline": "First Son recording produced in Cuba",
+    "text": "In 1917, Columbia Records brought a group of musicians from Oriente Province in Eastern Cuba to Havana to record a few sides. These recordings have been lost, but the group, renamed the Sexteto Habanero Godínez, recorded for Victor the following year. The band specialized in <a href=\"/s/the-americas/page/year.html\">son</a>, a genre that featured a rhythmic pattern known as clave (performed on an instrument called claves) and that quickly became the dominant form of Cuban popular music."
+   },
+   "media": {
+    "url": "/files/original/7e86ebd3abebaa5fbd3a5fcc40ba36219515e750.jpg"
+   },
+   "group": "Musical Milestones",
+   "background": {
+    "color": "#121c1b"
+   }
+  },
+  {
+   "start_date": {
+    "year": "1917"
+   },
+   "end_date": {
+    "year": "1917"
+   },
+   "display_date": "1917",
+   "text": {
+    "headline": "First jazz recording produced",
+    "text": "“Livery Stable Blues,” recorded in Victor Records’ New York studios by the all-white Original Dixieland Jass Band, is usually considered the first <a href=\"/s/the-americas/page/year.html\">jazz</a> record. A 12-bar blues, the song was a novelty number featuring a chorus in which horns bleated like barnyard animals. But the record helped make a national craze out of a New Orleans musical style created largely by African American musicians such as Buddy Bolden and Kid Ory."
+   },
+   "media": {
+    "url": "/files/original/bad983c81221223aa64168bab3510e3db26cc979.jpg"
+   },
+   "group": "Musical Milestones",
+   "background": {
+    "color": "#2b3332"
+   }
+  },
+  {
+   "start_date": {
+    "year": "1917",
+    "month": "1",
+    "day": "1"
+   },
+   "end_date": {
+    "year": "1917"
+   },
+   "display_date": "1917",
+   "text": {
+    "headline": "Carlos Gardel records the tango song \"Mi noche triste\"",
+    "text": "Although tango had been recorded earlier, Carlos Gardel’s version of “Mi noche triste” (“My Sad Night”), inaugurated a new genre of <a href=\"/s/the-americas/page/year.html\">tango</a> song. The record established the melodramatic lyrics, the use of Buenos Aires slang words, and the emotional vocal delivery that would remain characteristic of this genre for decades."
+   },
+   "media": {
+    "url": "/files/original/a1bc9e275cc8c6d9ee7ad76239a17c8b6517daa4.jpg"
+   },
+   "group": "Musical Milestones",
+   "background": {
+    "color": "#2b3332"
+   }
+  },
+  {
+   "start_date": {
+    "year": "1920"
+   },
+   "end_date": {
+    "year": "1924"
+   },
+   "display_date": "1924",
+   "text": {
+    "headline": "First electrical recordings are made by scientists at Bell Labs",
+    "text": "Scientists at Bell Labs, having invented the condenser and carbon microphone, set out to improve how sound was recorded. In 1920, they developed electric recording technologies. Instead of using a bell, like Edison’s phonograph, a microphone would convert sound into an electrical signal that was amplified and used to actuate the recording stylus. The first commercial electrical recording was made by Leopold Stokowski and the Philadelphia Orchestra for Victor. By the mid 1920s, electrical amplification and microphones had made it possible to dramatically improve <a href=\"/s/the-americas/page/note-technology.html\">recording</a> quality. Compared to acoustic recordings, electrical recordings had less mechanical noise and captured lows and highs better."
+   },
+   "media": {
+    "url": "media/Carbon_microphone-_c._1920s-_Ellis_Electrical_Laboratories_-_Museum_of_Science_a.jpg",
+    "caption": "Carbon Microphone, c. 1920s",
+    "credit": "Wikimedia Commons"
+   },
+   "group": "Recording Technology",
+   "background": {
+    "color": "#3a2e2e"
+   }
+  },
+  {
+   "start_date": {
+    "year": "1920"
+   },
+   "end_date": {
+    "year": "1920"
+   },
+   "display_date": "1920",
+   "text": {
+    "headline": "Mamie Smith’s Crazy Blues",
+    "text": "The history of the <a href=\"/s/the-americas/page/q-blues.html\">blues</a> took a significant turn in 1920 when the African American songwriter Perry Bradford convinced the owner of OKeh Records to record the Black vaudeville singer Mamie Smith. The A-side of Smith’s record, “Crazy Blues,” proved surprisingly popular among Black record buyers, opening the floodgates to so-called “race records.” Over the next two decades, virtually every record company followed OKeh’s lead, issuing thousands of recordings by Black artists, largely for the African American market."
+   },
+   "media": {
+    "url": "media/11-perry-bradford-publishing-co.jpg"
+   },
+   "group": "Musical Milestones",
+   "background": {
+    "color": "#2b3332"
+   }
+  },
+  {
+   "start_date": {
+    "year": "1921"
+   },
+   "end_date": {
+    "year": "1921"
+   },
+   "display_date": "1921",
+   "text": {
+    "headline": "Harry Pace establishes Black Swan Records",
+    "text": "Harry Pace established the first race-conscious record company, <a href=\"/s/the-americas/page/race-records.html\">Black Swan</a>, which aimed to share and celebrate set the wealth of musical talent in the African American community. Black Swan found its first big star in Ethel Waters and her recording of “Down Home Blues.”"
+   },
+   "media": {
+    "url": "media/Harry_H._Pace.jpg"
+   },
+   "group": "Musical Milestones",
+   "background": {
+    "color": "#b13a1a"
+   }
+  },
+  {
+   "start_date": {
+    "year": "1926"
+   },
+   "end_date": {
+    "year": "1926"
+   },
+   "display_date": "1926",
+   "text": {
+    "headline": "Vernon Dalhart records “Wreck of the Old 97”",
+    "text": "<a href=\"/s/the-americas/page/dalhart.html\">Country Music</a> was born when record companies decided to sell artists like Vernon Dalhart as authentic representatives of the musical traditions of poor, rural white people. Dalhart’s ballad “The Wreck of the Old 97” is considered by many to be the first country music single. Furthermore, this song represents the shift from the acoustic recording era to the electric."
+   },
+   "media": {
+    "url": "/files/original/0b485b00a7ee76e1ad77ec7df7fec09c73ea1d8b.jpg"
+   },
+   "group": "Musical Milestones",
+   "background": {
+    "color": "#121c1b"
+   }
+  }
+ ],
+ "title": {
+  "text": {
+   "headline": "Hearing the Americas",
+   "text": "A Timeline of Popular Music and Recording Technology in the Era of Acoustic Recording, 1890-1925"
+  },
+  "group": "Musical Milestones",
+  "background": {
+   "url": "/files/original/aae8e68b1ef2e0b819325a67880c8beaa1048331.jpeg"
+  }
+ }
+}

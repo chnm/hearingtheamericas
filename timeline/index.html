@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hearing the Americas · A Timeline of Popular Music and Recording Technology, 1877–1926</title>
+<!--
+  The home page embedded this timeline as an iframe pointing at
+  https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html, with a
+  ?source= parameter naming a Google Sheet. That made the timeline depend on
+  three things outside the archive: KnightLab's CDN, Google Sheets, and the
+  sheet's sharing settings staying as they were.
+
+  This page is the same TimelineJS, vendored under /vendor/timeline3/, reading
+  the sheet's contents as timeline.json in this directory. The options below
+  are the ones the original embed URL carried: font=Default, lang=en,
+  initial_zoom=2, height=650.
+-->
+<link rel="stylesheet" href="../vendor/timeline3/css/timeline.css">
+<link rel="stylesheet" href="timeline-a11y.css">
+<style>
+  html, body { width: 100%; height: 100%; padding: 0; margin: 0; }
+  #timeline-embed { height: 100%; }
+</style>
+</head>
+<body>
+<div id="timeline-embed"></div>
+<script src="../vendor/timeline3/js/timeline-min.js"></script>
+<script>
+  // script_path is what TimelineJS resolves its font stylesheet against; left
+  // at its default it would fetch ../css/fonts/font.default.css from the CDN.
+  new TL.Timeline('timeline-embed', 'timeline.json', {
+    script_path: new URL('../vendor/timeline3/js/', document.baseURI).toString(),
+    font: 'default',
+    language: 'en',
+    initial_zoom: 2,
+    height: 650,
+    is_embed: true,
+    hash_bookmark: false
+  });
+</script>
+</body>
+</html>
