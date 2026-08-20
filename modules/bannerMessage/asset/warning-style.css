@@ -1,0 +1,54 @@
+/* Open Sans, self-hosted.
+ *
+ * This file used to open with
+ *   @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+ * which made every one of the 962 pages that carry the content-warning banner
+ * fetch a stylesheet, and then a font file, from Google. The @font-face blocks
+ * below are Google's own answer to that exact request, pointed at local copies;
+ * only the latin and latin-ext subsets are kept, which is all the banner's one
+ * sentence of English needs.
+ */
+/* Open Sans -- latin-ext */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(fonts/open-sans-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Open Sans -- latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(fonts/open-sans-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+#content-warning-banner {
+  padding: .75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-family: "Open Sans", sans-serif;
+  overflow: hidden;
+  box-shadow: 0 0 10px #ccc;
+  z-index: 1;
+  font-size: 16px;
+  line-height: 1;
+}
+
+#content-warning-banner:after {
+  content: "";
+  position: absolute;
+  left: -9999px;
+  right: -999px;
+  background-color: #fff;
+  bottom: 0;
+  top: 0;
+  z-index: -1;
+}

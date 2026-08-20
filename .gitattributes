@@ -1,0 +1,35 @@
+# Line-ending policy for the hearingtheamericas.org static archive
+# (this subtree only).
+#
+# The site is served on Linux, so all *text* files are normalized to LF in the
+# repository and in the working tree. Binary assets are auto-detected by content
+# (NUL heuristic) and left byte-for-byte untouched; the explicit rules below are
+# belt-and-suspenders.
+* text=auto eol=lf
+
+# Never touch these binary types.
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.svg   binary
+*.pdf   binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.eot   binary
+*.otf   binary
+*.mp3   binary
+*.m4a   binary
+*.mp4   binary
+
+# The Protomaps basemap.
+*.pmtiles binary
+
+# Pagefind index artifacts are binary.
+*.pf_fragment binary
+*.pf_meta     binary
+*.pf_index    binary
+*.pf_filter   binary
+*.pagefind    binary
