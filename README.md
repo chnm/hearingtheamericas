@@ -154,6 +154,19 @@ Eight slide images that the sheet hot-linked to Wikimedia Commons, the Library
 of Congress and one third-party site are mirrored in `timeline/media/`; see the
 `PROVENANCE.txt` there. The rest come from the bucket.
 
+**Three of KnightLab's API credentials are redacted from the bundle** — a
+Flickr key, a Google Maps key and a Facebook app access token (in
+`appid|appsecret` form) used by the Instagram oEmbed handler. They ship in the
+public CDN file, so they are not secret in any meaningful sense, but they are
+not this project's to publish, and GitHub's secret scanning is right to object
+to them sitting in a repository. Nothing here can reach them: all 20 media and
+background URLs in `timeline.json` are local files, so the Flickr, Google Maps
+and Instagram handlers are never constructed. `vendor/timeline3/PROVENANCE.txt`
+records exactly what was changed and how to re-apply it after a refresh. A scan
+of the whole archive for credential patterns — Google, AWS, Slack, GitHub,
+Stripe, Mapbox, JWTs, private-key blocks and named `api_key`/`secret`/`token`
+assignments — finds nothing else.
+
 The timeline page is the one page in the archive that does **not** carry the
 Matomo block: it is an iframe inside a page that already counts the view.
 

@@ -1,0 +1,55 @@
+TimelineJS 3 (MPL-2.0), vendored from KnightLab's CDN.
+
+  js/timeline-min.js      https://cdn.knightlab.com/libs/timeline3/latest/js/timeline-min.js
+  css/timeline.css        https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css
+  css/icons/tl-icons.*    https://cdn.knightlab.com/libs/timeline3/latest/css/icons/
+  css/fonts/font.default.css
+                          https://cdn.knightlab.com/libs/timeline3/latest/css/fonts/font.default.css
+
+Fetched 2026-08-20. The home page used to load all of this from that CDN, with
+a Google Sheet id in the query string; see ../../timeline/ for what replaced
+that arrangement and ../../timeline/media/PROVENANCE.txt for the slide images.
+
+FOUR CHANGES TO WHAT THE CDN SERVED
+-----------------------------------
+
+1. css/fonts/font.default.css pointed at four PT Sans / PT Serif / PT Sans
+   Narrow faces on fonts.gstatic.com. Those are in css/fonts/files/ now and the
+   stylesheet names them locally.
+
+2. css/timeline.css declared the tl-icons face in five formats. It is trimmed
+   to woff2 + woff, and the .eot, .ttf and .svg files are not kept; they only
+   ever served IE8 and Android 4.
+
+3. Three of KnightLab's own API credentials are redacted from
+   js/timeline-min.js. They ship in the public CDN bundle, so they are not
+   secret in any meaningful sense, but they are not ours to publish and
+   GitHub's secret scanning is right to object to them sitting in a repository:
+
+     api_key_flickr:"bd3a7c45ddd52f3101825d41563a6125"      -> ""
+     api_key_googlemaps:"AIzaSyB9dW8e_iRrATFa8g24qB6BDBGdkrLDZYI"  -> ""
+     instagram_oembed?access_token=704270473831239|830b2107...  -> access_token=
+
+   The third is a Facebook app access token in appid|appsecret form, used by
+   the Instagram oEmbed media handler.
+
+   Nothing in this archive can reach any of the three. All 20 media and
+   background URLs in ../../timeline/timeline.json are local files -- twelve
+   under /files/ in the object bucket and eight mirrored in
+   ../../timeline/media/ -- so the Flickr, Google Maps and Instagram media
+   handlers are never constructed. If a Flickr or Instagram slide were ever
+   added to timeline.json it would now fail to load rather than quietly spend
+   somebody else's quota, which is the behaviour an archive should have.
+
+   The redaction is three string literals; the bundle is otherwise byte-for-byte
+   what the CDN served, and it still parses and runs.
+
+4. Nothing else. In particular the library's other third-party endpoints
+   (Vimeo, YouTube, SoundCloud, Wikipedia, DocumentCloud, Twitter, Bluesky) are
+   left alone: they need no credentials, and none of them is reachable from
+   this timeline's content either.
+
+REFRESHING
+----------
+Re-fetching from the CDN will reinstate all four. Re-apply them, then confirm
+the timeline still draws 20 slides -- one title and 19 events, 1877 to 1926.
