@@ -1,0 +1,428 @@
+/* A timeline of popular music and recording technology, 1877-1926.
+ *
+ * This replaces TimelineJS, which the home page used to load from KnightLab's
+ * CDN and which was later vendored here at 1.4 MB -- 224 KB of library, 976 KB
+ * of PT Sans and PT Serif, an icon font, and media handlers for fifteen
+ * services this archive does not use, three of them carrying KnightLab's own
+ * API credentials. What it drew was twenty slides.
+ *
+ * The typefaces are the two the rest of the archive already self-hosts.
+ *
+ * Progressive enhancement. Without JavaScript every slide is in the page, one
+ * after another, and reads as a document; timeline.js adds the .tl--js class,
+ * which turns it into one-slide-at-a-time with the navigation strip. The
+ * markup is generated into index.html rather than fetched, so the timeline is
+ * also the one thing in this archive that Pagefind could not index before.
+ */
+
+:root {
+    --tl-inklight: #ffffff;
+    --tl-paper:    #f6f1e9;
+    --tl-ink:      #3a2e2e;
+    --tl-rule:     #e2d7c5;
+    --tl-accent:   #b13a1a;
+    --tl-fallback: #2b3332;
+}
+
+.tl,
+.tl * {
+    box-sizing: border-box;
+}
+
+.tl {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    margin: 0;
+    font-family: "Crimson Text", Georgia, serif;
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--tl-ink);
+    background: var(--tl-paper);
+}
+
+/* ==========================================================================
+   Slides
+   ========================================================================== */
+
+.tl-slides {
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+/* In slideshow mode the strip is a fixed height at the bottom, so a long slide
+   scrolls inside its own box rather than pushing the navigation out of an
+   iframe that is 650px tall on the home page. */
+.tl--js .tl-slides {
+    overflow-y: auto;
+}
+
+.tl-slide {
+    position: relative;
+    padding: 40px 30px;
+    background-color: var(--tl-fallback);
+    background-position: center;
+    background-size: cover;
+    color: var(--tl-inklight);
+}
+
+/* Slides carrying a background photograph get a scrim. At 0.65 over a pure
+   white photograph the effective background is #595959, so white text is
+   7.0:1 in the worst case the data can produce -- a floor, not an average. */
+.tl-slide[data-bg="image"]::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+}
+
+.tl-slide > * {
+    position: relative;
+}
+
+.tl-slide-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 700px) {
+    .tl-slide-inner {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 36px;
+    }
+
+    .tl-slide-media {
+        flex: 0 0 40%;
+    }
+
+    .tl-slide-text {
+        flex: 1 1 auto;
+    }
+}
+
+.tl-slide--title .tl-slide-inner {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.tl-date {
+    display: block;
+    margin: 0 0 4px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--tl-inklight);
+    opacity: 0.85;
+}
+
+.tl-headline {
+    margin: 0 0 12px;
+    font-family: "League Spartan", "Montserrat", sans-serif;
+    font-size: 28px;
+    line-height: 1.15;
+    color: var(--tl-inklight);
+}
+
+.tl-slide--title .tl-headline {
+    font-size: 40px;
+}
+
+.tl-body {
+    margin: 0;
+}
+
+.tl-body p {
+    margin: 0 0 12px;
+}
+
+.tl-body a:link,
+.tl-body a:visited,
+.tl-credit a:link,
+.tl-credit a:visited {
+    color: var(--tl-inklight);
+    text-decoration: underline;
+}
+
+.tl-figure {
+    margin: 0;
+}
+
+.tl-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 320px;
+    object-fit: contain;
+    object-position: left top;
+}
+
+.tl-slide--title .tl-figure img {
+    margin: 0 auto;
+    object-position: center;
+}
+
+.tl-caption,
+.tl-credit {
+    margin: 8px 0 0;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    line-height: 1.45;
+    color: var(--tl-inklight);
+}
+
+.tl-credit {
+    opacity: 0.85;
+}
+
+/* ==========================================================================
+   Navigation
+   ========================================================================== */
+
+.tl-nav {
+    display: none;
+    flex: 0 0 auto;
+    align-items: stretch;
+    gap: 10px;
+    padding: 10px 12px 8px;
+    background: var(--tl-paper);
+    border-top: 3px solid var(--tl-rule);
+}
+
+.tl--js .tl-nav {
+    display: flex;
+}
+
+.tl-step {
+    flex: 0 0 auto;
+    width: 42px;
+    border: 2px solid var(--tl-accent);
+    border-radius: 4px;
+    background: transparent;
+    color: var(--tl-accent);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.tl-step:hover:not(:disabled) {
+    background: var(--tl-accent);
+    color: var(--tl-inklight);
+}
+
+.tl-step:disabled {
+    opacity: 0.35;
+    cursor: default;
+}
+
+.tl-track {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+/* Below 700px the lane strip is swapped for the select; above it, the select
+   is the redundant one. Both are always in the DOM. */
+.tl-jump {
+    display: none;
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 100%;
+    padding: 6px 8px;
+    border: 2px solid var(--tl-accent);
+    border-radius: 4px;
+    background: var(--tl-paper);
+    color: var(--tl-ink);
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+}
+
+@media screen and (max-width: 699px) {
+    .tl-track {
+        display: none;
+    }
+
+    .tl-jump {
+        display: block;
+    }
+
+    .tl-nav {
+        align-items: center;
+    }
+
+    .tl-step {
+        height: 40px;
+    }
+}
+
+.tl-lane {
+    position: relative;
+    height: 30px;   /* timeline.js sets the real height once it has packed rows */
+}
+
+.tl-lane-name {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: "Montserrat", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--tl-ink);
+    opacity: 0.75;
+    pointer-events: none;
+}
+
+/* 2.5.8 Target Size. The button itself is 26x26 and transparent; the dot you
+   see is 15px, drawn by ::before. Sizing the button to the dot instead would
+   give a 15x15 target with 12px between neighbours in the packed rows, which
+   is the size *and* the spacing half of the criterion failed at once -- and a
+   transparent ::after pad does not help, because the target is measured from
+   the element's own box. */
+.tl-marker {
+    position: absolute;
+    top: 14px;   /* timeline.js moves colliding markers down a row */
+    width: 26px;
+    height: 26px;
+    margin-left: -13px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.tl-marker::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 15px;
+    height: 15px;
+    margin: -7.5px 0 0 -7.5px;
+    border: 2px solid var(--tl-accent);
+    border-radius: 50%;
+    background: var(--tl-paper);
+}
+
+.tl-marker:hover::before {
+    background: var(--tl-accent);
+}
+
+.tl-marker[aria-current="true"]::before {
+    background: var(--tl-accent);
+    box-shadow: 0 0 0 3px rgba(177, 58, 26, 0.28);
+}
+
+.tl-axis {
+    position: relative;
+    height: 22px;
+    border-top: 1px solid var(--tl-rule);
+}
+
+.tl-tick {
+    position: absolute;
+    top: 0;
+    font-family: "Montserrat", sans-serif;
+    font-size: 11px;
+    color: var(--tl-ink);
+    opacity: 0.75;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+.tl-tick::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    width: 1px;
+    height: 5px;
+    background: var(--tl-rule);
+}
+
+.tl-readout {
+    flex: 0 0 auto;
+    padding: 0 14px 10px;
+    background: var(--tl-paper);
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--tl-ink);
+    min-height: 1.4em;
+    display: none;
+}
+
+.tl--js .tl-readout {
+    display: block;
+}
+
+.tl-readout b {
+    color: var(--tl-accent);
+}
+
+/* ==========================================================================
+   Focus, and the no-JS reading order
+   ========================================================================== */
+
+.tl :focus-visible {
+    outline: 3px solid var(--tl-accent);
+    outline-offset: 2px;
+}
+
+.tl-slide:focus-visible,
+.tl-marker:focus-visible {
+    outline: 3px solid var(--tl-inklight);
+    outline-offset: 2px;
+}
+
+.tl-marker:focus-visible {
+    outline-color: var(--tl-accent);
+}
+
+/* Without JavaScript the slides read one after another and each needs a rule
+   between it and the next; in slideshow mode only one is ever visible. */
+.tl-slide + .tl-slide {
+    border-top: 3px solid var(--tl-rule);
+}
+
+.tl--js .tl-slide + .tl-slide {
+    border-top: 0;
+}
+
+.tl--js .tl-slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100%;
+}
+
+/* [hidden] is display:none in the user-agent stylesheet, which an author rule
+   naming two classes outranks. Without this the nineteen slides timeline.js
+   marks hidden stay on the page: still rendered, still scrollable, and their
+   24 links still in the tab order. */
+.tl-slide[hidden] {
+    display: none !important;
+}
+
+.tl-visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tl * {
+        transition: none !important;
+        animation: none !important;
+    }
+}

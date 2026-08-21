@@ -64,11 +64,11 @@ was built last, because it indexes the HTML as committed.
 | Static search | `pagefind/` (committed — the deploy only copies files), `pagefind.yml`, `themes/hearing_americas/asset/js/search.js`, `search.html` |
 | Accessibility | `themes/hearing_americas/asset/css/a11y.css`, plus the markup itself |
 | Artists browse | `s/the-americas/faceted-browse/1.html`, `themes/hearing_americas/asset/js/artist-facets.js` |
-| Timeline | `timeline/` — the vendored TimelineJS reads `timeline/timeline.json` |
+| Timeline | `timeline/` — `index.html` is generated from `timeline.json`; `timeline.js` + `timeline.css`, no dependencies |
 | Maps | `basemap/protomaps-basemap.pmtiles`, `modules/Mapping/asset/js/omeka-basemap.js`, `modules/Mapping/asset/vendor/protomaps-leaflet.js` |
 | Expeditions geometry | `data/ne/globe-{north,south}-america.json` |
 | Fonts | `themes/hearing_americas/asset/css/fonts.css` + `fonts/*.woff2` — Crimson Text, Montserrat; `modules/bannerMessage/asset/fonts/` — Open Sans; `themes/…/asset/font/` — League Spartan; `application/asset/fonts/` — Font Awesome 5 |
-| Vendored JS | `application/asset/js/vendor/jquery.min.js`, `vendor/soundcite/`, `vendor/timeline3/` |
+| Vendored JS | `application/asset/js/vendor/jquery.min.js`, `vendor/soundcite/` |
 | Recovered audio | `audio/` — the 23 clips the pages played from a third-party host |
 | Media | referenced as `/files/…`; the objects themselves live in the bucket |
 | URL repair | `redirects.caddy` |
@@ -141,34 +141,43 @@ The home page carried this:
 <iframe src="https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1QA4375O8BUp5pUas5Yr0duph-Pg5fRYmHJ0ZcKLLuDE&…">
 ```
 
-— which made a headline feature of the site depend on KnightLab's CDN, on Google
-Sheets, and on one spreadsheet's sharing settings never changing. All three were
-still answering, so the sheet was exported and committed as
-`timeline/timeline.json`: 1 title slide and 19 events, 1877 to 1926.
-
-TimelineJS itself is vendored under `vendor/timeline3/`, with the PT Sans / PT
-Serif faces it loads from `fonts.gstatic.com` self-hosted beside it and its icon
-font trimmed from five formats to woff2 + woff. `timeline/index.html` is a
-local embed page in place of the CDN's, and the home page's iframe points at it.
-Eight slide images that the sheet hot-linked to Wikimedia Commons, the Library
-of Congress and one third-party site are mirrored in `timeline/media/`; see the
+— which made a headline feature of the site depend on KnightLab's CDN, on
+Google Sheets, and on one spreadsheet's sharing settings never changing. All
+three were still answering, so the sheet was exported and committed as
+`timeline/timeline.json`: 1 title slide and 19 events, 1877 to 1926. Eight
+slide images that the sheet hot-linked to Wikimedia Commons, the Library of
+Congress and one third-party site are mirrored in `timeline/media/`; see the
 `PROVENANCE.txt` there. The rest come from the bucket.
 
-**Three of KnightLab's API credentials are redacted from the bundle** — a
-Flickr key, a Google Maps key and a Facebook app access token (in
-`appid|appsecret` form) used by the Instagram oEmbed handler. They ship in the
-public CDN file, so they are not secret in any meaningful sense, but they are
-not this project's to publish, and GitHub's secret scanning is right to object
-to them sitting in a repository. Nothing here can reach them: all 20 media and
-background URLs in `timeline.json` are local files, so the Flickr, Google Maps
-and Instagram handlers are never constructed. `vendor/timeline3/PROVENANCE.txt`
-records exactly what was changed and how to re-apply it after a refresh. A scan
-of the whole archive for credential patterns — Google, AWS, Slack, GitHub,
-Stripe, Mapbox, JWTs, private-key blocks and named `api_key`/`secret`/`token`
-assignments — finds nothing else.
+TimelineJS itself was vendored at first, and then removed. Keeping it meant
+carrying 1.4 MB — 224 KB of library, 976 KB of PT Sans and PT Serif, an icon
+font, and media handlers for fifteen services this archive does not use, three
+of them holding KnightLab's own Flickr, Google Maps and Facebook credentials —
+to draw twenty slides. `timeline/timeline.js` and `timeline/timeline.css` are
+13 KB together and have no dependencies.
 
-The timeline page is the one page in the archive that does **not** carry the
-Matomo block: it is an iframe inside a page that already counts the view.
+`timeline/index.html` is **generated from `timeline.json`** by the same script
+that builds the rest of the archive, so the markup and the data cannot drift
+apart. Two things follow from generating it as static HTML rather than building
+it in the browser:
+
+- **Without JavaScript the timeline still reads.** Every slide is in the page,
+  one after another, as a document. TimelineJS rendered an empty box.
+- **It is searchable.** Those twenty slides were the only prose in the archive
+  Pagefind could not index; `/timeline/` is a search result now.
+
+`timeline.js` turns that stack into one-slide-at-a-time with a navigation strip
+below: two lanes, one per group, earliest first; a marker per event positioned
+by year; decade ticks; previous and next; and arrow keys, Home and End. Four
+events share 1917 and two each share 1912 and 1920, so markers are packed into
+as many rows per lane as they need — every one at its true date, none within
+28px of another, which is also what keeps them 24px apart for 2.5.8. The
+packing is redone on resize.
+
+The slides carry the backgrounds the sheet specified: seventeen a colour, three
+a photograph. White text on the four colours in use runs from 6.02:1 to
+17.39:1. The photographs get a 0.65 black scrim, which puts white text at 7:1
+even over a pure white image — a floor, not an average.
 
 ### Maps
 
@@ -315,8 +324,24 @@ would audit as empty shells.
   Verified by building the whole archive a second time with renumbering
   switched off, rendering both copies in headless Chromium at 1280px and 375px,
   and comparing every element in the content region on thirteen computed
-  properties and its bounding box. **16,086 element/viewport comparisons across
-  70 pages, zero differences.** The check found three real regressions
+  properties and its bounding box, and separately by asserting the invariants
+  themselves over all 965 pages: the site title is never a heading, `<main>`
+  opens at `h1`, no level is skipped, no heading carries a `heading-N` class
+  naming its own level, and no heading is empty.
+
+  That second check exists because the first one was, for a while, lying. The
+  variant builder symlinked the repo's directories into its output and then
+  wrote through them, so it clobbered the real archive with un-renumbered pages
+  and compared that tree against itself: 16,086 comparisons, zero differences,
+  and the renumbering silently reverted across all 961 pages in the process.
+  Nothing else caught it, because axe's `heading-order` rule is in its
+  best-practice tag set rather than the WCAG tags the sweep filtered on, so a
+  document with `h2 → h4` skips and a site-title `<h1>` on every page audits
+  clean. The builder now refuses to write outside its own directory, the sweep
+  includes `best-practice`, and the invariants are asserted directly rather
+  than inferred from a comparison. The comparison, re-run against two trees
+  that genuinely differ, reports zero differences over 3,884 element/viewport
+  comparisons. The check found three real regressions
   while it was being written: the missing `line-height` restatement, which gave
   every property label on 377 item pages a 45px line box instead of 30px; the
   `.div-banner h2` case, which had left the Artists heading unstyled; and the
