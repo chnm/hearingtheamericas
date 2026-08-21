@@ -17,7 +17,11 @@ if (mappingData && mappingData['o-module-mapping:bounds'] !== null) {
 $('.mapping-marker-popup-content').each(function() {
     var popup = $(this).clone().show();
     var latLng = new L.LatLng(popup.data('marker-lat'), popup.data('marker-lng'));
-    var marker = new L.Marker(latLng);
+    // Leaflet gives every marker tabindex="0" and alt="", so a keyboard user
+    // landed on a row of controls with no accessible name. The popup's own
+    // heading is the marker's label.
+    var label = $.trim(popup.find('h1, h2, h3, h4, h5, h6').first().text());
+    var marker = new L.Marker(latLng, {alt: label || 'Map marker'});
     marker.bindPopup(popup[0]);
     markers.addLayer(marker);
 });

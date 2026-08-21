@@ -9,7 +9,12 @@ function MappingBlock(mapDiv, timelineDiv) {
     });
     var timelineData = timelineDiv.length ? timelineDiv.data('data') : null;
     var timelineOptions = timelineDiv.length ? timelineDiv.data('options') : null;
-    var timeline = timelineDiv.length ? new TL.Timeline(timelineDiv[0], timelineData, timelineOptions) : null;
+    // TimelineJS is no longer part of this archive -- the home page's timeline
+    // is /timeline/, which needs no library. No map block here defines a
+    // .mapping-timeline, so this never ran; the guard makes that explicit
+    // rather than leaving a reference to a global that cannot exist.
+    var timeline = (timelineDiv.length && typeof TL !== 'undefined')
+        ? new TL.Timeline(timelineDiv[0], timelineData, timelineOptions) : null;
     var markers = new L.markerClusterGroup();
     var markersByItem = {};
 
@@ -60,10 +65,13 @@ function MappingBlock(mapDiv, timelineDiv) {
         // markers can be reset correctly.
         // @see https://github.com/Leaflet/Leaflet.markercluster/issues/786
         var icon = new L.Icon.Default();
+        // Leaflet gives every marker tabindex="0" and alt="", so a keyboard
+        // user landed on a row of controls with no accessible name at all.
+        // The marker's own label is what the popup is about to say.
         var marker = L.marker(L.latLng(
             data['o-module-mapping:lat'],
             data['o-module-mapping:lng']
-        ), {icon: icon});
+        ), {icon: icon, alt: data['o-module-mapping:label'] || 'Map marker'});
         var popupContent = $('.mapping-marker-popup-content[data-marker-id="' + markerId + '"]');
         if (popupContent.length > 0) {
             popupContent = popupContent.clone().show();
