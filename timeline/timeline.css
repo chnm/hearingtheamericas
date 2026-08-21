@@ -52,8 +52,16 @@
 
 /* In slideshow mode the strip is a fixed height at the bottom, so a long slide
    scrolls inside its own box rather than pushing the navigation out of an
-   iframe that is 650px tall on the home page. */
+   iframe that is 650px tall on the home page.
+   
+   The column flex is what makes the visible slide fill that box. Height on a
+   flex item is auto, so a `min-height: 100%` on the slide resolves against
+   nothing and does not apply -- which left short slides, the title slide most
+   visibly, painting their background over only as much of the area as their
+   text happened to need. */
 .tl--js .tl-slides {
+    display: flex;
+    flex-direction: column;
     overflow-y: auto;
 }
 
@@ -397,7 +405,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 100%;
+    flex: 1 0 auto;
 }
 
 /* [hidden] is display:none in the user-agent stylesheet, which an author rule
