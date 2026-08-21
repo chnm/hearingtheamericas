@@ -543,18 +543,18 @@ there instead — which is what mallhistory.org does today.
 
 The archive must be served **at a domain root**: `/files/…`, the basemap, the
 vendored SoundCite loader and the Pagefind result links are all root-absolute,
-as they are on the sibling archives. It is at `hearamerica.dev.chnm.gmu.edu`
-today, for both dev and prod
-(`.github/workflows/hearingtheamericas--deploy.yml`). Flipping
-`website-prod-fqdn` to `hearingtheamericas.org` is the cutover and is
-deliberately **not** part of this work — the origin is still live and still
-serving the real site.
+as they are on the sibling archives. Dev is `hearamerica.dev.chnm.gmu.edu`;
+prod is `hearingtheamericas.org`
+(`.github/workflows/hearingtheamericas--deploy.yml`, flipped in `6671e75cd0`).
+The retrofit itself deliberately did not make that flip — the origin Omeka
+install was still live and still serving the real site while this was built,
+and the cutover is a DNS decision, not a migration one.
 
 That flip is what makes one loose end resolve: the `@id` permalinks Omeka wrote
 into the JSON-LD block on all 914 resource pages still read
 `https://hearingtheamericas.org/api/items/4`, which is what an identifier minted
-before the migration should keep saying. Nothing in the archive *fetches* from
-that host — those are text. Of the 3,428 `href`/`src`/`action` references to
+before the migration should keep saying, and what they now resolve to. Nothing
+in the archive *fetches* from that host — those are text. Of the 3,428 `href`/`src`/`action` references to
 `hearingtheamericas.org` in the pristine export, zero remain; what is left is
 12,786 plain-text mentions across 932 pages, all of them inside those JSON-LD
 blocks.
