@@ -253,9 +253,9 @@ one, and the sibling archives work around it by hiding Pagefind's input and
 driving it from the header, leaving an invisible control in the DOM.
 
 **Index scope.** 963 pages, 8,881 words. Only `<main data-pagefind-body>` is
-indexed: the header, the 40-link navigation, the two banners and the footer are
-byte-identical on every page, and indexing them would make every page a hit for
-every word on the menu. The three browse listings are indexed for their own
+indexed: the header, the 40-link navigation, the content-warning banner and the
+footer are byte-identical on every page, and indexing them would make every
+page a hit for every word on the menu. The three browse listings are indexed for their own
 text, but their link lists are not — every word in them is a title indexed on
 the page it points at. `search.html` indexes nothing of its own.
 
@@ -319,7 +319,8 @@ would audit as empty shells.
 - **Use of colour (1.4.1)**: links are `#b13a1a` with `text-decoration: none`,
   against `#3a2e2e` body text — 2.16:1, well under the 3:1 that colour alone
   needs. Underlines are restored across the content region, the footer and both
-  banners, and taken back off where a link sits among nothing but other links,
+  content-warning banner, and taken back off where a link sits among nothing
+  but other links,
   wraps an image, or is drawn as a button. Restoring them only in `<p>` and
   `<li>` would not have been enough: this site puts prose straight into styled
   `<div>`s and its bibliographies into `<cite>`.
@@ -365,12 +366,11 @@ would audit as empty shells.
   here), 3.2.6 Consistent Help and 3.3.7 Redundant Entry (no help mechanism, no
   multi-step flows).
 
-**Order of the banners.** The skip link is the first thing in `<body>`, ahead of
-both the RRCHNM archive notice and the site's own content warning. A keyboard
-user should not have to tab past three links to reach the one that exists to
-save them the trouble. The content warning is real markup now rather than
-something a script prepends, so it survives with JavaScript off; both banners
-carry `data-pagefind-ignore`, so neither makes every page a search hit.
+**The content warning.** It is real markup now rather than something a script
+prepends, so it survives with JavaScript off and is visible to an indexer; it
+carries `data-pagefind-ignore` so it does not make every page a search hit. The
+skip link stays ahead of it in `<body>`: a keyboard user should not have to tab
+past a link to reach the one that exists to save them the trouble.
 
 ### Robustness
 
@@ -417,12 +417,26 @@ page and the Artists page, the only outbound request is `stats.rrchnm.org`.
 
 ### Chrome
 
-Every page carries the **RRCHNM archive banner**, the same markup and inline
-styles as the sibling archives, using the RRCHNM wordmark the footer already
-carried rather than a square mark squeezed into the banner's 30px row. It is
-drawn at its natural 5.41:1 ratio with explicit `width` and `height` so nothing
-shifts while it loads, and its underline is suppressed on that link alone; the
-text link beside it goes to the same place and keeps its own.
+**The footer credit carries three logos**, not two. The sentence beside them
+says the site is "a project of the George Mason University with funding from
+the National Endowment for the Humanities", but only RRCHNM and the NEH were
+pictured; the GMU Department of History and Art History mark goes between them,
+in the gap the theme's `space-between` flex row already left for it. It is
+byte-identical to the copy the `iowmaterialhistorieswebinar.org` archive ships
+(sha256 `497b803e…`), so the two sets of credits stay consistent.
+
+That row sizes its logos at a fixed 300px with no `max-width`, so below the
+width at which they all fit the flex algorithm shrank them rather than
+wrapping: at 375px each was 92px across and the fine print on the GMU mark was
+unreadable. Two fitted in a 1280px viewport, three do not below about 1170px,
+so from there down the row wraps and each mark keeps its size.
+
+**There is no "this is a static copy" banner.** The sibling archives put one
+across the top of every page; this site does not need it. The footer already
+credits RRCHNM by name and wordmark on all 964 pages, and a banner would have
+been saying a second time what the page already says — above the skip link and
+above the site's own content warning, which is the one notice here that a
+reader does need to see first.
 
 The theme nested `<footer>` inside `<footer>`; the wrapper is gone. `<title>` on
 every page read *Hearing the Americas · X · Hearing the Americas*, because
@@ -472,6 +486,17 @@ at the page that replaced them, and answers `410` for `/api`, `/admin` and
 `/login`, which no static host can stand in for. Every rule was checked with
 `caddy validate` and exercised against a running Caddy 2.10.2; every redirect
 was followed to a 200.
+
+**Two things about the deployed environment, observed on the live hosts.** None
+of these rules fires on `hearamerica.dev.chnm.gmu.edu` — not even the `410`
+block — although the build itself is deployed; the sibling archives' rules do
+fire on their prod hosts, so importing `redirects.caddy` looks like a per-vhost
+step rather than something the build carries. And on those prod hosts `redir`
+works but `respond` does not: `iowmaterialhistorieswebinar.org/api` answers 404
+rather than the 410 its own file asks for. That does not change what belongs in
+this file. `/api`, `/admin` and `/login` stay excluded from `@needs_html` either
+way, because without the exclusion `/admin` would 301 to `/admin.html` and 404
+there instead — which is what mallhistory.org does today.
 
 ### Deployment note
 

@@ -84,11 +84,11 @@
  * alone needs -- so in the middle of a paragraph a link was distinguished by
  * nothing a colour-blind reader could see.
  *
- * Underlines are restored across the content region, the footer and the two
- * banners, and taken back off in the places where a link sits among nothing
- * but other links, wraps an image, or is drawn as a button: menus, breadcrumbs,
- * page-to-page pagination, browse lists, resource links, item showcases, the
- * flip cards, the map popups and the two funding logos. Restoring them only
+ * Underlines are restored across the content region, the footer and the
+ * content-warning banner, and taken back off in the places where a link sits
+ * among nothing but other links, wraps an image, or is drawn as a button:
+ * menus, breadcrumbs, page-to-page pagination, browse lists, resource links,
+ * item showcases, the flip cards, the map popups and the three credit logos. Restoring them only
  * inside <p> and <li> would not have been enough -- this site puts prose
  * straight into styled <div>s, and its bibliographies into <cite>.
  *
@@ -100,8 +100,6 @@ main a:link,
 main a:visited,
 footer a:link,
 footer a:visited,
-.notice div a:link,
-.notice div a:visited,
 #content-warning-banner a:link,
 #content-warning-banner a:visited {
     text-decoration: underline;
@@ -124,8 +122,7 @@ main .browse-controls a:link, main .browse-controls a:visited,
 main .mapping-marker-popup-content a:link, main .mapping-marker-popup-content a:visited,
 main .media-render a:link, main .media-render a:visited,
 main a[aria-hidden="true"]:link, main a[aria-hidden="true"]:visited,
-footer .div-foot-img a:link, footer .div-foot-img a:visited,
-.notice-logo:link, .notice-logo:visited {
+footer .div-foot-img a:link, footer .div-foot-img a:visited {
     text-decoration: none;
 }
 
@@ -142,18 +139,14 @@ main li cite a:visited {
    states, which is what technique G183 asks for. */
 main a:hover, main a:focus,
 footer a:hover, footer a:focus,
-.notice a:hover, .notice a:focus,
 #content-warning-banner a:hover,
 #content-warning-banner a:focus,
 header a:hover, header a:focus {
     text-decoration: underline;
 }
 
-/* The RRCHNM wordmark in the archive banner is a link whose whole content is
-   an image; an underline under it is noise, and the text link beside it goes
-   to the same place and keeps its own. */
-.notice-logo:hover,
-.notice-logo:focus,
+/* The site title in the header wraps the wordmark; an underline under it is
+   noise, and it points at the page the visitor is already on. */
 header .site-title:hover,
 header .site-title:focus {
     text-decoration: none;
@@ -382,4 +375,27 @@ main iframe {
 ul.resource-list .genres li .resource-link {
     padding: 5px 3px;
     margin: 0 -3px;
+}
+
+/* The footer credit row.
+ *
+ * .div-foot-img is a space-between flex row whose logos are a fixed 300px
+ * wide, with no max-width, so below the width at which they all fit the flex
+ * algorithm shrinks them instead of wrapping: at 375px each was 92px across
+ * and the fine print on the Department of History and Art History mark --
+ * "College of Humanities and Social Sciences", "George Mason University" --
+ * was unreadable. Two logos fitted in a 1280px viewport; three do not below
+ * about 1170px, so the row wraps from there down and each mark keeps its size
+ * until the viewport itself is narrower than one of them. Nothing changes on a
+ * desktop viewport. */
+@media screen and (max-width: 1169px) {
+    .div-foot-img {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px 45px;
+    }
+
+    .div-foot-img img {
+        max-width: 100%;
+    }
 }
