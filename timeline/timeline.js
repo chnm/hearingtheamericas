@@ -79,9 +79,10 @@
         b.type = 'button';
         b.className = 'tl-marker';
         b.style.left = ((year - MIN) / SPAN * 100) + '%';
-        // The dot carries no visible text, so the accessible name is the whole
-        // label: four events share 1917 and "1917" alone would not tell them
-        // apart in a list of controls.
+        b.textContent = year;
+        // The visible label is the year, but four events share 1917, so the
+        // accessible name is the whole thing. It contains the visible label,
+        // which is what 2.5.3 Label in Name asks for.
         b.setAttribute('aria-label',
             slide.getAttribute('data-display-date') + ': ' + slide.getAttribute('data-headline'));
         b.addEventListener('click', function () { show(i, b); });
@@ -100,8 +101,9 @@
      * each other horizontally on the same row. PITCH is the touch target, so
      * the rows also satisfy the spacing half of 2.5.8.
      */
-    var PITCH = 28;
-    var ROW = 28;
+    var PITCH = 38;    // chip is 34px wide; 4px of air between neighbours
+    var ROW = 32;      // 24px chip + 6px stub + 2px
+    var LANE_TOP = 18; // clear of the lane's name, which sits on its own line
 
     function packLanes() {
         var width = track.clientWidth;
@@ -115,11 +117,23 @@
                 var r = 0;
                 while (lastInRow[r] !== undefined && x - lastInRow[r] < PITCH) r++;
                 lastInRow[r] = x;
-                m.el.style.top = (12 + r * ROW) + 'px';
+                m.el.style.top = (LANE_TOP + r * ROW) + 'px';
             });
-            lanes[g].style.height = (12 + Math.max(1, lastInRow.length) * ROW) + 'px';
+            lanes[g].style.height = (LANE_TOP + Math.max(1, lastInRow.length) * ROW) + 'px';
         });
     }
+
+    // Decade rules, drawn up through every lane so a chip's position can be
+    // read off the axis rather than guessed. Same decades as the ticks below.
+    Object.keys(lanes).forEach(function (g) {
+        for (var d = Math.ceil(MIN / 10) * 10; d <= MAX; d += 10) {
+            var line = document.createElement('span');
+            line.className = 'tl-gridline';
+            line.style.left = ((d - MIN) / SPAN * 100) + '%';
+            line.setAttribute('aria-hidden', 'true');
+            lanes[g].appendChild(line);
+        }
+    });
 
     // Decade ticks across whatever span the data turns out to cover.
     var axis = document.createElement('div');
