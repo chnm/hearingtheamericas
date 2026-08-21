@@ -21,7 +21,7 @@ the origin — 3,428 absolute references across the export. The theme fetched it
 two typefaces from Google on every page view and its jQuery from Google's CDN,
 with no fallback, and `default.js` is entirely inside `(function($){…})(jQuery)`.
 The content-warning banner was injected by a script that first pulled a third
-typeface from Google. Every one of the 4,912 images carried `alt=""` or no `alt`
+typeface from Google. Every one of the images carried `alt=""` or no `alt`
 at all.
 
 It was also **badly incomplete**, which was the more urgent problem. The crawl
@@ -274,14 +274,14 @@ own input: that would be a second search box on a page whose header already has
 one, and the sibling archives work around it by hiding Pagefind's input and
 driving it from the header, leaving an invisible control in the DOM.
 
-**Index scope.** 963 pages, 8,881 words. Only `<main data-pagefind-body>` is
+**Index scope.** 964 pages, 8,905 words. Only `<main data-pagefind-body>` is
 indexed: the header, the 40-link navigation, the content-warning banner and the
 footer are byte-identical on every page, and indexing them would make every
 page a hit for every word on the menu. The three browse listings are indexed for their own
 text, but their link lists are not — every word in them is a title indexed on
 the page it points at. `search.html` indexes nothing of its own.
 
-**Search recall is bounded by the data.** 8,881 words across 963 pages. The 46
+**Search recall is bounded by the data.** 8,905 words across 964 pages. The 46
 written pages carry most of the prose; a typical item page is a title, a
 performer, a label, a date and a one-line description.
 
@@ -346,14 +346,17 @@ would audit as empty shells.
   every property label on 377 item pages a 45px line box instead of 30px; the
   `.div-banner h2` case, which had left the Artists heading unstyled; and the
   multi-line selectors that a first, line-based rewrite had missed.
-- **Images (1.1.1)**: all 4,912 of them carried `alt=""`, or no `alt` attribute
-  at all, which is not the same thing and is worse. 3,525 are described now,
-  from the `dcterms:title` of the media object the image depicts, keyed on the
-  file hash in the URL; ten Omeka assets carry authored `o:alt_text` and that is
-  used where it exists. The remaining 1,387 are marked decorative on purpose:
-  the theme's record sleeves, spinning discs and shelves, and Omeka's
-  media-type placeholders. The two logos in the footer credit are named, because
-  they say who made this and who paid for it.
+- **Images (1.1.1)**: every one of the 4,929 images carried `alt=""`, or no
+  `alt` attribute at all, which is not the same thing and is worse. 3,399 are
+  described now, from the `dcterms:title` of the media object the image
+  depicts, keyed on the file hash in the URL; ten Omeka assets carry authored
+  `o:alt_text` and that is used where it exists. The remaining 1,530 are marked
+  decorative on purpose: the theme's record sleeves, spinning discs and
+  shelves, Omeka's media-type placeholders, and the thumbnail inside every
+  `resource-link`, where the span beside it already carries the name and
+  describing both makes a screen reader say it twice. The three logos in the
+  footer credit are named, because they say who made this and who paid for
+  it.
 - **Use of colour (1.4.1)**: links are `#b13a1a` with `text-decoration: none`,
   against `#3a2e2e` body text — 2.16:1, well under the 3:1 that colour alone
   needs. Underlines are restored across the content region, the footer and both
