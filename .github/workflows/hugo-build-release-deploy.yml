@@ -14,6 +14,9 @@ name: "[hearingtheamericas.org] Hugo Build, Release, Deploy"
 
 on:
   workflow_dispatch:
+  push:
+    branches: ["**"]
+    paths: ['**', "!.github/**"]
 
 jobs:
 
@@ -23,7 +26,7 @@ jobs:
     with:
       runner_labels: '["self-hosted","IncusOS"]'
       hugo-context-root: "."
-      hugo-devl-url: "https://hearamerica.dev.chnm.gmu.edu"
+      hugo-devl-url: "https://hta.dev.chnm.gmu.edu"
       hugo-prod-url: "https://hearingtheamericas.org"
 
       release-tag-name-type: "iso"
