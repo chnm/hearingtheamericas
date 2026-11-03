@@ -53,6 +53,7 @@ def main(baseline, public, verbose=False):
     a = {p.relative_to(baseline).as_posix() for p in baseline.rglob("*") if p.is_file()}
     b = {p.relative_to(public).as_posix() for p in public.rglob("*") if p.is_file()}
     a = {p for p in a if not p.startswith(SKIP) and not p.endswith(".DS_Store")}
+    b = {p for p in b if not p.startswith(SKIP)}
     bad = 0
     for p in sorted(a - b):
         print(f"missing  {p}")

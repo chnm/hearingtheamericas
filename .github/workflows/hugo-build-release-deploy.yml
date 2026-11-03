@@ -1,0 +1,29 @@
+name: "[hearingtheamericas.org] Hugo Build, Release, Deploy"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "**"
+    paths:
+      - '**'
+      - "!.github/**"
+
+jobs:
+
+  hugo-build-release-deploy:
+    uses: chnm/.github/.github/workflows/hugo--build-release-deploy.yml@main
+    secrets: inherit
+    with:
+      runner_labels: '["self-hosted","IncusOS"]'
+      hugo-context-root: "."
+      hugo-devl-url: "https://hearamerica.dev.chnm.gmu.edu"
+      hugo-prod-url: "https://hearingtheamericas.org"
+
+      release-tag-name-type: "iso"
+
+      website-devl-fqdn: "hearamerica.dev.chnm.gmu.edu"
+      # Pre-launch: hearingtheamericas.org is still deployed from
+      # chnm/sustainability's hearingtheamericas/. With no prod FQDN the default
+      # branch builds without deploying; add it back at cutover:
+      # website-prod-fqdn: "hearingtheamericas.org"

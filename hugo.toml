@@ -15,6 +15,12 @@ disableKinds = ["taxonomy", "term", "rss", "sitemap", "robotsTXT", "404"]
 [security]
   allowContent = ['! ^text/org$']
 
+# The production build passes --minify. Pages ship as verified against the
+# archive (scripts/parity.py), and several carry large inline scripts (the
+# Expeditions map's D3 bundle), so HTML is left alone.
+[minify]
+  disableHTML = true
+
 [params]
   matomo_site_id = "11"
 

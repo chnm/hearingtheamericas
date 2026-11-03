@@ -1,29 +1,13 @@
-# Pagefind configuration for the hearingtheamericas.org archive.
-#
-# The index in pagefind/ is committed, so the deploy stays a plain file copy
-# with no build step. This file is what regenerates it:
-#
-#     npx pagefind
-#
-# run from this directory, after any change to the HTML.
-#
-# `site` and `output_subdir` are both "." because the archive is served at a
-# domain root and the search page loads /pagefind/pagefind.js from there.
-site: .
+# Pagefind configuration. The Dockerfile runs `npx pagefind` after `hugo`;
+# to search a local build, run the same two commands and serve public/.
+site: public
 output_subdir: pagefind
 
-# Only the content region of each page is indexed -- <main data-pagefind-body>.
-# The header, the 40-link navigation, the archive banner, the content-warning
-# banner and the footer are byte-identical on all 964 pages; indexing them
-# would make every page a hit for every word in the menu.
-#
-# exclude_selectors covers the rest: the three generated browse listings put
-# every item title on one page each, and those titles are already indexed on
-# the pages they link to.
+# Only each page's <main data-pagefind-body> is indexed: the header, the
+# 40-link navigation, the content-warning banner and the footer are the same
+# on every page, and indexing them would make every page a hit for every word
+# in the menu. The browse listings mark their link lists data-pagefind-ignore,
+# since every title in them is indexed on the page it links to.
 exclude_selectors:
   - "[data-pagefind-ignore]"
-
-# Nothing here is user-generated, and Omeka wrote a JSON-LD block into every
-# resource page; keeping the crawler off script and style content keeps those
-# 500-odd bytes of machine-readable metadata out of the excerpts.
 glob: "**/*.html"
