@@ -1,0 +1,250 @@
+# Hearing the Americas — Hugo source for the archive of the Omeka S site.
+# See README.md. Page URLs are the archive's (…/item/4.html), so uglyURLs.
+baseURL = "https://hearingtheamericas.org/"
+title = "Hearing the Americas"
+locale = "en-US"
+uglyURLs = true
+disablePathToLower = true
+disableHugoGeneratorInject = true
+disableKinds = ["taxonomy", "term", "rss", "sitemap", "robotsTXT", "404"]
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+# Written pages keep the HTML the Omeka page-block editor produced (content/*.html).
+[security]
+  allowContent = ['! ^text/org$']
+
+[params]
+  matomo_site_id = "11"
+
+[[menus.main]]
+  name = "Spins"
+  identifier = "spins"
+  weight = 100
+  pageRef = "/s/the-americas/page/spins"
+[[menus.main]]
+  name = "What was the dance craze that inspired W.C. Handy’s legendary “St. Louis Blues” (1914)?"
+  parent = "spins"
+  weight = 101
+  pageRef = "/s/the-americas/page/q-dancecraze"
+[[menus.main]]
+  name = "What was the most popular kind of band in America and worldwide in 1900?"
+  parent = "spins"
+  weight = 102
+  pageRef = "/s/the-americas/page/q-popular-band"
+[[menus.main]]
+  name = "How did recording transform music listening?"
+  parent = "spins"
+  weight = 103
+  pageRef = "/s/the-americas/page/recording-transform"
+[[menus.main]]
+  name = "What role did Black people from the British Caribbean play in the Jazz Age?"
+  parent = "spins"
+  weight = 104
+  pageRef = "/s/the-americas/page/british-caribbean"
+[[menus.main]]
+  name = "Did jazz come from Latin America?"
+  parent = "spins"
+  weight = 105
+  pageRef = "/s/the-americas/page/jazz-latin-america"
+[[menus.main]]
+  name = "Who was the first African American recording star?"
+  parent = "spins"
+  weight = 106
+  pageRef = "/s/the-americas/page/q-first-star"
+[[menus.main]]
+  name = "Was the United States the only country where the racist tradition of blackface performance was popular?"
+  parent = "spins"
+  weight = 107
+  pageRef = "/s/the-americas/page/blackface"
+[[menus.main]]
+  name = "What musical instrument was invented for use in early recordings?"
+  parent = "spins"
+  weight = 108
+  pageRef = "/s/the-americas/page/stroh-violin"
+[[menus.main]]
+  name = "Who was the King of Ragtime?"
+  parent = "spins"
+  weight = 109
+  pageRef = "/s/the-americas/page/q-kingofragtime"
+[[menus.main]]
+  name = "What city was home to two record factories pressing more than 4 million discs per year by 1926?"
+  parent = "spins"
+  weight = 110
+  pageRef = "/s/the-americas/page/q-whatcity"
+[[menus.main]]
+  name = "What Appalachian folk instrument came from Africa?"
+  parent = "spins"
+  weight = 111
+  pageRef = "/s/the-americas/page/what-instrument"
+[[menus.main]]
+  name = "Jazz, son, samba, and tango songs all became musical symbols of their nations; when were they first recorded?"
+  parent = "spins"
+  weight = 112
+  pageRef = "/s/the-americas/page/year"
+[[menus.main]]
+  name = "Why did James Reese Europe forbid his musicians to bring sheet music to gigs?"
+  parent = "spins"
+  weight = 113
+  pageRef = "/s/the-americas/page/sheet-music"
+[[menus.main]]
+  name = "Who was the first country singer?"
+  parent = "spins"
+  weight = 114
+  pageRef = "/s/the-americas/page/dalhart"
+[[menus.main]]
+  name = "What surprised record companies most about the music consumers wanted to hear?"
+  parent = "spins"
+  weight = 115
+  pageRef = "/s/the-americas/page/surprise"
+[[menus.main]]
+  name = "Why does the music recorded before 1920 all sound alike?"
+  parent = "spins"
+  weight = 116
+  pageRef = "/s/the-americas/page/q-soundalike"
+[[menus.main]]
+  name = "Where do the blues come from?"
+  parent = "spins"
+  weight = 117
+  pageRef = "/s/the-americas/page/q-blues"
+[[menus.main]]
+  name = "Who made sexy ragtime dances safe for the general public?"
+  parent = "spins"
+  weight = 118
+  pageRef = "/s/the-americas/page/q-dance"
+[[menus.main]]
+  name = "How did samba, an Afro-Brazilian genre, come to be celebrated as the national music of Brazil?"
+  parent = "spins"
+  weight = 119
+  pageRef = "/s/the-americas/page/samba"
+[[menus.main]]
+  name = "Why wasn’t Jamaican music recorded before the 1950s?"
+  parent = "spins"
+  weight = 120
+  pageRef = "/s/the-americas/page/Scouts"
+[[menus.main]]
+  name = "What did Memphis politician Edward Crump have to do with the blues?"
+  parent = "spins"
+  weight = 121
+  pageRef = "/s/the-americas/page/memphis-blues"
+[[menus.main]]
+  name = "How did the bolero move from Cuba to Mexico?"
+  parent = "spins"
+  weight = 122
+  pageRef = "/s/the-americas/page/bolero"
+[[menus.main]]
+  name = "Who was the first Black blues singer on record?"
+  parent = "spins"
+  weight = 123
+  pageRef = "/s/the-americas/page/q-blues-first"
+[[menus.main]]
+  name = "Styles"
+  identifier = "styles"
+  weight = 200
+  pageRef = "/s/the-americas/page/styles"
+[[menus.main]]
+  name = "Ethnic Humor"
+  parent = "styles"
+  weight = 201
+  pageRef = "/s/the-americas/page/ethnic-humor"
+[[menus.main]]
+  name = "Ragtime"
+  parent = "styles"
+  weight = 202
+  pageRef = "/s/the-americas/page/ragtime"
+[[menus.main]]
+  name = "Vaudeville"
+  parent = "styles"
+  weight = 203
+  pageRef = "/s/the-americas/page/vaudeville"
+[[menus.main]]
+  name = "Minstrelsy"
+  parent = "styles"
+  weight = 204
+  pageRef = "/s/the-americas/page/minstrelsy"
+[[menus.main]]
+  name = "Tango"
+  parent = "styles"
+  weight = 205
+  pageRef = "/s/the-americas/page/tango"
+[[menus.main]]
+  name = "Hawaiian Music"
+  parent = "styles"
+  weight = 206
+  pageRef = "/s/the-americas/page/hawaiian-music"
+[[menus.main]]
+  name = "Classical Music"
+  parent = "styles"
+  weight = 207
+  pageRef = "/s/the-americas/page/classical"
+[[menus.main]]
+  name = "Notes"
+  identifier = "notes"
+  weight = 300
+  pageRef = "/s/the-americas/page/notes"
+[[menus.main]]
+  name = "Recording Technologies"
+  parent = "notes"
+  weight = 301
+  pageRef = "/s/the-americas/page/note-technology"
+[[menus.main]]
+  name = "Victor Recording Expeditions in Latin America"
+  parent = "notes"
+  weight = 302
+  pageRef = "/s/the-americas/page/Expeditions"
+[[menus.main]]
+  name = "Race Records"
+  parent = "notes"
+  weight = 303
+  pageRef = "/s/the-americas/page/race-records"
+[[menus.main]]
+  name = "Habanera"
+  parent = "notes"
+  weight = 304
+  pageRef = "/s/the-americas/page/habanera"
+[[menus.main]]
+  name = "Music Publishing"
+  parent = "notes"
+  weight = 305
+  pageRef = "/s/the-americas/page/music-publishing"
+[[menus.main]]
+  name = "Twelve-bar Blues"
+  parent = "notes"
+  weight = 306
+  pageRef = "/s/the-americas/page/twelve-bar-blues"
+[[menus.main]]
+  name = "Syncopation"
+  parent = "notes"
+  weight = 307
+  pageRef = "/s/the-americas/page/syncopation"
+[[menus.main]]
+  name = "African-American Theater Circuits"
+  parent = "notes"
+  weight = 308
+  pageRef = "/s/the-americas/page/theater-circuits"
+[[menus.main]]
+  name = "Folk Music"
+  parent = "notes"
+  weight = 309
+  pageRef = "/s/the-americas/page/Folk"
+[[menus.main]]
+  name = "Artists"
+  identifier = "1"
+  weight = 400
+  url = "/s/the-americas/faceted-browse/1.html"
+[[menus.main]]
+  name = "About"
+  identifier = "about"
+  weight = 500
+  pageRef = "/s/the-americas/page/about"
+[[menus.main]]
+  name = "Further Reading"
+  parent = "about"
+  weight = 501
+  pageRef = "/s/the-americas/page/bibliography"
+[[menus.main]]
+  name = "Content Notice"
+  parent = "about"
+  weight = 502
+  pageRef = "/s/the-americas/page/content"

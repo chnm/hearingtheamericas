@@ -1,0 +1,19 @@
+{{- /* Omeka marks the current written page and its parent "active". Artists is
+       a url entry rather than a pageRef, so it never is, as on the origin. */ -}}
+{{- $p := . -}}
+<ul class="navigation">
+{{- range site.Menus.main }}
+    <li{{ if or ($p.IsMenuCurrent "main" .) ($p.HasMenuCurrent "main" .) }} class="active"{{ end }}>
+        <a href="{{ .URL }}">{{ .Name }}</a>
+        {{- with .Children }}
+        <ul>
+            {{- range . }}
+            <li{{ if $p.IsMenuCurrent "main" . }} class="active"{{ end }}>
+                <a href="{{ .URL }}">{{ .Name }}</a>
+            </li>
+            {{- end }}
+        </ul>
+        {{- end }}
+    </li>
+{{- end }}
+</ul>

@@ -45,3 +45,9 @@
 # *?page=*&*
 # *?resource-template-id=*
 # *?item-set-id=*
+
+# Hugo build output and tooling.
+/public/
+/resources/
+/node_modules/
+.hugo_build.lock

@@ -1,0 +1,20 @@
+{{- /* The theme's stylesheets and scripts, in Omeka's order. Pages add tags in
+       three slots (head_css after style.css, head_js after default.js,
+       head_tail last) and can drop base ones with head_omit. */ -}}
+{{- $omit := .Params.head_omit | default slice -}}
+{{- $link := `<link href="/%s" media="screen" rel="stylesheet" type="text/css">` -}}
+{{- range slice "themes/hearing_americas/asset/css/fonts.css" "application/asset/css/iconfonts.css" "themes/hearing_americas/asset/css/style.css" }}{{ printf $link . | safeHTML }}
+{{ end -}}
+{{- range .Params.head_css }}{{ . | safeHTML }}
+{{ end -}}
+{{- range slice "modules/MetadataBrowse/asset/css/metadata-browse.css" "modules/bannerMessage/asset/warning-style.css" "s/the-americas/css-editor.css" }}{{ if not (in $omit .) }}{{ printf $link . | safeHTML }}
+{{ end }}{{ end -}}
+<script src="/application/asset/js/vendor/jquery.min.js"></script>
+<script  src="/application/asset/js/global.js"></script>
+<script  src="/themes/hearing_americas/asset/js/default.js"></script>
+{{ range .Params.head_js }}{{ . | safeHTML }}
+{{ end -}}
+{{ partial "js-translate.html" . }}
+<link href="/themes/hearing_americas/asset/css/a11y.css" media="screen" rel="stylesheet" type="text/css">
+{{ range .Params.head_tail }}{{ . | safeHTML }}
+{{ end -}}

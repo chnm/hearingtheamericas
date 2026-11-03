@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="en-US">    <head>
+        <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">        <title>{{ .Title }} · {{ site.Title }}</title>        {{ partial "head.html" . }}
+</head>
+
+    <body class="{{ .Params.body_class }}"><a id="skipnav" href="#content">Skip to main content</a>
+<div id="content-warning-banner" role="region" aria-label="Content notice" data-pagefind-ignore><span>This site contains historical content which may be upsetting or offensive to some visitors. Please see the <a href="/s/the-americas/page/content.html">content notice</a> for a full statement.</span></div>
+
+                <header>
+                        <a href="/" class="site-title"><p class="site-title-text"><span class="title">{{ site.Title }}</span></p></a>
+
+            <nav aria-label="Main">
+            {{ partial "nav.html" . }}
+            </nav>
+
+            <div id="search">
+
+<form action="/search.html" id="search-form" role="search">
+    <input type="text" name="fulltext_search" value=""
+        placeholder="Search"
+        aria-label="Search this archive">
+    <button type="submit">Search</button>
+</form>
+            </div>
+        </header>
+        <main id="content" {{ if eq .Params.pagefind "ignore" }}data-pagefind-ignore{{ else }}data-pagefind-body{{ end }}>
+{{ block "main" . }}{{ .Content }}{{ end }}
+        </main>
+        {{ partial "footer.html" . }}
+    </body>
+</html>
