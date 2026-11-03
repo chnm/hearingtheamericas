@@ -4,7 +4,7 @@
 {{- $idx := dict -}}
 {{- range $p := where site.RegularPages "Type" "in" (slice "item" "media") -}}
 	{{- range $p.Params.properties -}}
-		{{- $label := index site.Data.properties .term | default .label -}}
+		{{- $label := index hugo.Data.properties .term | default .label -}}
 		{{- range .values -}}
 			{{- with .item -}}
 				{{- $k := printf "item/%v" . -}}

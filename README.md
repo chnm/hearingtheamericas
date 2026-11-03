@@ -71,11 +71,11 @@ Items that are `class: recording` show their audio first, each followed by the
 media's `dcterms:source`; other items show images and embeds only, as the Omeka
 theme did.
 
-**A media file.** `item:` is the parent item's id. `kind: image` or `kind: audio`
+**A media file.** `item:` is the parent item's id. `media_type: image` or `media_type: audio`
 with `file:` naming the original under `/files/original/`, plus `alt:` and
 `link_title:` for an image, or `label:` (the player's accessible name) for
 audio. Derivatives are expected at `/files/{large,medium,square}/<hash>.jpg`,
-as Omeka made them. `kind: html` with `html:` is for embeds.
+as Omeka made them. `media_type: html` with `html:` is for embeds.
 
 The media files themselves are not in this repository. They live in the file
 store, and the host serves them at `/files/{original,large,medium,square}/`.

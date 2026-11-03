@@ -6,14 +6,14 @@
        source, then their images; other items show images and embeds only. */ -}}
 {{- if eq .Params.class "recording" }}
         <div class="audio media-embeds">
-            {{ range where $media "Params.kind" "ne" "image" }}<div class="media-render">{{ partial "media-render.html" . }}</div>{{ partial "attribution.html" . }}{{ end }}
+            {{ range where $media "Params.media_type" "ne" "image" }}<div class="media-render">{{ partial "media-render.html" . }}</div>{{ partial "attribution.html" . }}{{ end }}
                 </div>
         <div class="media-embeds">
-            {{ range where $media "Params.kind" "image" }}<div class="media-render">{{ partial "media-render.html" . }}</div>{{ end }}
+            {{ range where $media "Params.media_type" "image" }}<div class="media-render">{{ partial "media-render.html" . }}</div>{{ end }}
         </div>
 {{- else if .Params.media }}
             <div class="media-embeds">
-            {{ range where $media "Params.kind" "ne" "audio" }}<div class="media-render">{{ partial "media-render.html" . }}</div>{{ end }}        </div>
+            {{ range where $media "Params.media_type" "ne" "audio" }}<div class="media-render">{{ partial "media-render.html" . }}</div>{{ end }}        </div>
 {{- end }}
 <div class="item-head">
 <h1 class="heading-2"><span class="title">{{ .Title }}</span></h1>{{ with .Params.role }}<span class="role">{{ . }}</span>{{ end }}</div>

@@ -6,9 +6,9 @@
 {{- $t := $p.Params.thumbnail -}}
 {{- if not $t -}}
 	{{- if eq $p.Type "media" -}}
-		{{- if eq $p.Params.kind "image" -}}
+		{{- if eq $p.Params.media_type "image" -}}
 			{{- $t = printf "/files/square/%s.jpg" (path.BaseName $p.Params.file) -}}
-		{{- else if eq $p.Params.kind "audio" -}}
+		{{- else if eq $p.Params.media_type "audio" -}}
 			{{- $t = "/application/asset/thumbnails/audio.png" -}}
 		{{- end -}}
 	{{- else if eq $p.Type "item" -}}

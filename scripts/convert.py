@@ -176,14 +176,14 @@ def properties(main, page):
 def media_render(fragment):
     image, audio = IMAGE.fullmatch(fragment), AUDIO.fullmatch(fragment)
     if image:
-        f = {"kind": "image", "file": image[1], "link_title": text(image[2]), "alt": text(image[4])}
+        f = {"media_type": "image", "file": image[1], "link_title": text(image[2]), "alt": text(image[4])}
         stem = image[1].rsplit(".", 1)[0]
         if image[3] != f"/files/large/{stem}.jpg":
             f["display"] = image[3]
         return f
     if audio:
-        return {"kind": "audio", "file": audio[1], "label": text(audio[2])}
-    return {"kind": "html", "html": fragment}
+        return {"media_type": "audio", "file": audio[1], "label": text(audio[2])}
+    return {"media_type": "html", "html": fragment}
 
 
 class Archive:
