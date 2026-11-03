@@ -1,0 +1,2 @@
+{{- /* A slide's background: a colour, or a photograph timeline.css darkens. */ -}}
+{{- with .url }}background-image: url({{ . }}){{ else }}background-color: {{ .color }}{{ end -}}

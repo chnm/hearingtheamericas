@@ -9,7 +9,9 @@ content/ whose front matter carries what the shared templates need (title,
 body class, extra head tags) and whose body is the page's <main>, with every
 relative URL rewritten root-absolute so it reads the same from any file.
 
-Idempotent: a second run leaves `git diff` empty.
+This was the one-time migration. content/ is the source now, and a second
+run would overwrite edits made since, so it refuses to run once content/
+exists unless given --force. Run against a fresh checkout it is idempotent.
 """
 import html
 import json
@@ -394,4 +396,6 @@ def main(baseline):
 
 
 if __name__ == "__main__":
+    if CONTENT.exists() and "--force" not in sys.argv:
+        sys.exit("content/ exists; this would overwrite it (use --force)")
     main(sys.argv[1])

@@ -1,0 +1,59 @@
+{{- /* The home page's timeline, one slide per event in static/timeline/timeline.json
+       (the KnightLab TimelineJS sheet, exported). Without JavaScript the slides
+       read as a document; timeline.js turns them into a slideshow. The home page
+       frames this page, so it has no site chrome and no Matomo. */ -}}
+{{- $tl := os.ReadFile "static/timeline/timeline.json" | transform.Unmarshal -}}
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ .Title }} · {{ site.Title }}</title>
+<link href="/themes/hearing_americas/asset/css/fonts.css" media="screen" rel="stylesheet" type="text/css">
+<link href="/timeline/timeline.css" media="screen" rel="stylesheet" type="text/css">
+<style>
+  html, body { width: 100%; height: 100%; padding: 0; margin: 0; }
+</style>
+</head>
+<body>
+<div class="tl">
+  <main class="tl-slides" data-pagefind-body aria-label="A timeline of popular music and recording technology, 1877 to 1926">
+{{- with $tl.title }}
+      <section class="tl-slide tl-slide--title" data-bg="{{ cond (isset .background "url") "image" "color" }}" style="{{ partial "timeline-bg.html" .background | safeCSS }}" data-group="{{ .group }}" data-headline="{{ .text.headline | plainify }}">
+        <div class="tl-slide-inner">
+        <div class="tl-slide-text">
+          <h1 class="tl-headline">{{ .text.headline | safeHTML }}</h1>
+          <div class="tl-body"><p>{{ .text.text | safeHTML }}</p></div>
+        </div>
+        </div>
+      </section>
+{{- end }}
+{{- range $tl.events }}
+      <section class="tl-slide" data-bg="{{ cond (isset .background "url") "image" "color" }}" style="{{ partial "timeline-bg.html" .background | safeCSS }}" data-year="{{ .start_date.year }}" data-display-date="{{ .display_date }}" data-group="{{ .group }}" data-headline="{{ .text.headline | plainify | htmlUnescape }}">
+        <div class="tl-slide-inner">
+	{{- with .media }}
+        <div class="tl-slide-media">
+          <figure class="tl-figure">
+            <img src="{{ .url }}" alt="{{ .caption | default .credit }}">
+		{{- with .caption }}
+            <figcaption class="tl-caption">{{ . }}</figcaption>
+		{{- end }}
+          </figure>
+		{{- with .credit }}
+          <p class="tl-credit">{{ . }}</p>
+		{{- end }}
+        </div>
+	{{- end }}
+        <div class="tl-slide-text">
+          <span class="tl-date">{{ .display_date }}</span>
+          <h2 class="tl-headline">{{ .text.headline | safeHTML }}</h2>
+          <div class="tl-body"><p>{{ .text.text | safeHTML }}</p></div>
+        </div>
+        </div>
+      </section>
+{{- end }}
+  </main>
+</div>
+<script src="/timeline/timeline.js"></script>
+</body>
+</html>

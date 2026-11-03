@@ -1,0 +1,22 @@
+{{- /* The Artists browse: the items of item set {{< artists 55 >}}, oldest
+       first, each tagged with its dcterms:subject values (text, or an item
+       set's title), lowercased, for the Style facet in artist-facets.js. */ -}}
+{{- $set := int (.Get 0) -}}
+{{- $artists := slice -}}
+{{- range sort (where site.RegularPages "Type" "item") "Params.created" -}}
+	{{- if in (.Params.item_sets | default slice) $set }}{{ $artists = $artists | append . }}{{ end -}}
+{{- end }}
+        <p class="row-count" id="artist-count" role="status">{{ len $artists }} artists</p>
+        <ul class="resource-list" id="artist-list" data-pagefind-ignore>
+{{- range $artists }}
+	{{- $subjects := slice -}}
+	{{- range where (.Params.properties | default slice) "term" "dcterms:subject" -}}
+		{{- range .values -}}
+			{{- with index . "item-set" }}{{ $subjects = $subjects | append (lower (partial "resource.html" (printf "item-set/%v" .)).Title) }}{{ else }}{{ $subjects = $subjects | append (lower .text) }}{{ end -}}
+		{{- end -}}
+	{{- end }}
+    <li class="item resource" data-subjects="{{ delimit $subjects "|" }}">
+        {{ partial "resource-link.html" (dict "page" .) }}
+    </li>
+{{- end }}
+</ul>
