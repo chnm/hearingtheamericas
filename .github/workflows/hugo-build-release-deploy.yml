@@ -1,16 +1,8 @@
 name: "[hearingtheamericas.org] Hugo Build, Release, Deploy"
 
-# Not enabled yet: no host is set up to take this build. Deployment is still
-# chnm/sustainability's static deploy of hearingtheamericas/. Until cutover the
-# workflow runs only by hand and, with no FQDNs, builds without deploying.
-# At cutover, restore the push trigger and the FQDNs, as in chnm/hurricanearchive:
-#
-#   push:
-#     branches: ["**"]
-#     paths: ['**', "!.github/**"]
-#
-#   website-devl-fqdn: "hearamerica.dev.chnm.gmu.edu"
-#   website-prod-fqdn: "hearingtheamericas.org"
+# Pushes to main deploy to hearingtheamericas.org; pushes to any other branch
+# deploy to hta.dev.chnm.gmu.edu. Both FQDNs must be on the allowlist in
+# chnm/.github (.github/scripts/allowed_fqdns.txt).
 
 on:
   workflow_dispatch:
@@ -28,5 +20,7 @@ jobs:
       hugo-context-root: "."
       hugo-devl-url: "https://hta.dev.chnm.gmu.edu"
       hugo-prod-url: "https://hearingtheamericas.org"
+      website-devl-fqdn: "hta.dev.chnm.gmu.edu"
+      website-prod-fqdn: "hearingtheamericas.org"
 
       release-tag-name-type: "iso"
