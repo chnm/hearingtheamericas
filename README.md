@@ -8,8 +8,10 @@ University, with funding from the National Endowment for the Humanities.
 It was an Omeka S site. It was flattened to a static archive and brought to
 WCAG 2.2 AA in August 2026 (see [docs/retrofit.md](docs/retrofit.md)), and is
 now a Hugo site so that it can be added to. The Hugo build reproduces that
-archive page for page: `scripts/parity.py` compares the two and reports no
-differences across all 964 pages and 225 other files.
+archive page for page: `scripts/parity.py` compares the two and reports one
+difference across all 964 pages and 225 other files, on purpose: item set
+pages list every item, where the archive kept only Omeka's first page of 50
+(so item set 56, Songs, was missing 22).
 
 ## Layout
 
@@ -132,10 +134,6 @@ that archive. It refuses to run once `content/` exists.
 
 ## Known deviations from Omeka
 
-- **Item set 56 (Songs)** lists its first 50 of 72 items, and its Next link
-  points back to itself, because the archive captured page 1 of Omeka's
-  pagination. `layouts/item-set/single.html` reproduces that for parity;
-  removing the `first 50` lists all of them.
 - **"Related to" order** for eleven items is kept in `linked_order:`. Omeka
   ordered those lists by database row, which no longer exists. Everywhere else
   the order is computed.
