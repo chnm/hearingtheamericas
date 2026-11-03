@@ -103,12 +103,13 @@ npx pagefind      # search index into public/pagefind, per pagefind.yml
 `hugo server` previews the site, but media and search won't work there: media
 is served by the host, and the search index is built after Hugo.
 
-Pushing any branch builds the Docker image in `Dockerfile` (Hugo, then
-Pagefind) and deploys it through
-`chnm/.github/.github/workflows/hugo--build-release-deploy.yml`: branches other
-than the default go to hearamerica.dev.chnm.gmu.edu. Until cutover the default
-branch builds without deploying, because hearingtheamericas.org is still served
-from chnm/sustainability; see the workflow file.
+Deployment is not set up yet: hearingtheamericas.org and
+hearamerica.dev.chnm.gmu.edu are still served by chnm/sustainability's static
+deploy of its `hearingtheamericas/` directory. The workflow here runs only by
+hand and builds without deploying. At cutover it gets the push trigger and
+hostnames that chnm/hurricanearchive has (see the comment in the workflow), and
+then builds the Docker image in `Dockerfile` (Hugo, then Pagefind) and deploys
+through `chnm/.github/.github/workflows/hugo--build-release-deploy.yml`.
 
 ## Checking a change against the archive
 
