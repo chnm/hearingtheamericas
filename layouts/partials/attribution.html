@@ -1,0 +1,6 @@
+{{- /* A recording's source, from the media's own dcterms:source. */ -}}
+{{- range first 1 (where (.Params.properties | default slice) "term" "dcterms:source") -}}
+	{{- with index .values 0 -}}
+		{{- if .uri }}<div class="attribution">Source: {{ partial "uri-link.html" . }}</div>{{ end -}}
+	{{- end -}}
+{{- end -}}

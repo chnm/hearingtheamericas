@@ -1,0 +1,4 @@
+{{- /* A URI value as Omeka linked it. Written out whole because html/template
+       percent-encodes ' ( and ) in an href, and these are the addresses as
+       their sources publish them. */ -}}
+{{- printf `<a class="uri-value-link" target="_blank" href="%s">%s</a>` (htmlEscape .uri) (htmlEscape (.label | default .uri)) | safeHTML -}}

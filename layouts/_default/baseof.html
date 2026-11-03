@@ -1,9 +1,9 @@
 <!DOCTYPE html><html lang="en-US">    <head>
         <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">        <title>{{ .Title }} · {{ site.Title }}</title>        {{ partial "head.html" . }}
+<meta name="viewport" content="width=device-width, initial-scale=1">        <title>{{ .Params.head_title | default .Title }} · {{ site.Title }}</title>        {{ partial "head.html" . }}
 </head>
 
-    <body class="{{ .Params.body_class }}"><a id="skipnav" href="#content">Skip to main content</a>
+    <body class="{{ block "body_class" . }}{{ .Params.body_class }}{{ end }}"><a id="skipnav" href="#content">Skip to main content</a>
 <div id="content-warning-banner" role="region" aria-label="Content notice" data-pagefind-ignore><span>This site contains historical content which may be upsetting or offensive to some visitors. Please see the <a href="/s/the-americas/page/content.html">content notice</a> for a full statement.</span></div>
 
                 <header>

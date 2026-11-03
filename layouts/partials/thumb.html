@@ -1,0 +1,22 @@
+{{- /* A resource's thumbnail at .size (square, medium or large). `thumbnail:`
+       in front matter wins (an Omeka asset, or a derivative of another file);
+       otherwise an image media's own derivative, an item's first media's, or
+       Omeka's placeholder. */ -}}
+{{- $p := .page -}}
+{{- $t := $p.Params.thumbnail -}}
+{{- if not $t -}}
+	{{- if eq $p.Type "media" -}}
+		{{- if eq $p.Params.kind "image" -}}
+			{{- $t = printf "/files/square/%s.jpg" (path.BaseName $p.Params.file) -}}
+		{{- else if eq $p.Params.kind "audio" -}}
+			{{- $t = "/application/asset/thumbnails/audio.png" -}}
+		{{- end -}}
+	{{- else if eq $p.Type "item" -}}
+		{{- with index ($p.Params.media | default slice) 0 -}}
+			{{- with site.GetPage (printf "/s/the-americas/media/%v" .) -}}
+				{{- $t = partial "thumb.html" (dict "page" . "size" "square") -}}
+			{{- end -}}
+		{{- end -}}
+	{{- end -}}
+{{- end -}}
+{{- return replace ($t | default "/application/asset/thumbnails/default.png") "/files/square/" (printf "/files/%s/" .size) -}}

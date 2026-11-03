@@ -1,0 +1,37 @@
+{{ define "body_class" }}item resource show {{ .Params.class }} content-warning-banner{{ end }}
+{{ define "main" }}
+{{- $media := slice -}}
+{{- range .Params.media }}{{ if not (in ($.Params.hide_media | default slice) .) }}{{ $media = $media | append (partial "resource.html" (printf "media/%v" .)) }}{{ end }}{{ end -}}
+{{- /* Recordings put their audio and HTML media first, each followed by its
+       source, then their images; other items show images and embeds only. */ -}}
+{{- if eq .Params.class "recording" }}
+        <div class="audio media-embeds">
+            {{ range where $media "Params.kind" "ne" "image" }}<div class="media-render">{{ partial "media-render.html" . }}</div>{{ partial "attribution.html" . }}{{ end }}
+                </div>
+        <div class="media-embeds">
+            {{ range where $media "Params.kind" "image" }}<div class="media-render">{{ partial "media-render.html" . }}</div>{{ end }}
+        </div>
+{{- else if .Params.media }}
+            <div class="media-embeds">
+            {{ range where $media "Params.kind" "ne" "audio" }}<div class="media-render">{{ partial "media-render.html" . }}</div>{{ end }}        </div>
+{{- end }}
+<div class="item-head">
+<h1 class="heading-2"><span class="title">{{ .Title }}</span></h1>{{ with .Params.role }}<span class="role">{{ . }}</span>{{ end }}</div>
+
+<div class="item-metadata">{{ partial "properties.html" (dict "props" .Params.properties "h" "h2") }}
+</div>
+{{- if isset .Params "description" }}
+	{{- with .Params.description }}
+<div class="item-description">{{ . | safeHTML }}</div>
+	{{- end }}
+{{- else }}
+	{{- range first 1 (where (.Params.properties | default slice) "term" "dcterms:description") }}
+		{{- with index .values 0 }}
+<div class="item-description">{{ with .html }}{{ . | safeHTML }}{{ else }}{{ .text }}{{ end }}</div>
+		{{- end }}
+	{{- end }}
+{{- end }}
+{{ partial "linked.html" . }}
+
+{{ partial "jsonld.html" . }}{{ with .Params.after }}{{ . | safeHTML }}{{ end }}
+{{ end }}

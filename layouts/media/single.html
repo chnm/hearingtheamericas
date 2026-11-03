@@ -1,0 +1,9 @@
+{{ define "body_class" }}{{ .Params.body_class | default "media resource show content-warning-banner" }}{{ end }}
+{{ define "main" }}
+{{- $item := partial "resource.html" (printf "item/%v" .Params.item) }}
+<h1 class="heading-2"><span class="title">{{ .Title }}</span></h1><h2 class="heading-3">Media</h2>
+<p class="media-parent-item">
+    Part of <a href="{{ $item.RelPermalink }}">{{ $item.Title }}</a></p>
+<div class="media-render">{{ partial "media-render.html" . }}</div>{{ partial "properties.html" (dict "props" .Params.properties "h" "h3") }}
+{{ partial "jsonld.html" . }}
+{{ end }}

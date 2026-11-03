@@ -1,0 +1,24 @@
+---
+bibo:performer: performer
+bibo:transcriptOf: transcript of
+dcterms:coverage: Coverage
+dcterms:creator: Creator
+dcterms:date: Date
+dcterms:dateSubmitted: Date Submitted
+dcterms:description: Description
+dcterms:hasPart: Has Part
+dcterms:hasVersion: Has Version
+dcterms:identifier: Identifier
+dcterms:isPartOf: Is Part Of
+dcterms:isReferencedBy: Is Referenced By
+dcterms:isVersionOf: Is Version Of
+dcterms:mediator: Mediator
+dcterms:publisher: Publisher
+dcterms:relation: Relation
+dcterms:source: Source
+dcterms:subject: Subject
+dcterms:temporal: Temporal Coverage
+dcterms:title: Title
+dcterms:type: Type
+foaf:birthday: birthday
+---

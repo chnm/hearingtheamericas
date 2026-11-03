@@ -1,0 +1,5 @@
+{{- /* The JSON-LD record Omeka published for a resource, kept verbatim in
+       assets/jsonld/. Resources added after the migration have none. */ -}}
+{{- with resources.Get (printf "jsonld/%s/%v.json" .Type .Params.id) -}}
+{{ printf `<script type="application/ld+json">%s</script>` .Content | safeHTML }}
+{{- end -}}

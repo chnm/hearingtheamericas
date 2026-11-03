@@ -7,10 +7,12 @@ Both trees are normalised the same way before comparing: every URL is
 resolved to root-absolute (the archive used relative URLs, the Hugo build
 root-absolute ones; both resolve to the same address at the domain root),
 and whitespace runs and whitespace between tags are collapsed, since HTML
-renders them alike. Comments are dropped, and "/index.html" is "/". Anything else that differs is reported, page by page.
+renders them alike. Comments are dropped, "/index.html" is "/", and character references are
+spelled one way. Anything else that differs is reported, page by page.
 Every other file must be byte-identical. Exits 1 on any difference.
 """
 import difflib
+import html
 import filecmp
 import re
 import sys
@@ -22,12 +24,22 @@ from convert import rewrite  # noqa: E402
 SKIP = ("pagefind/", "README.md", "pagefind.yml", ".git")
 
 
+ENTITY = re.compile(r"&(?:#[0-9]+|#x[0-9a-fA-F]+|[A-Za-z]+);")
+ESCAPED = {"&": "&amp;", "<": "&lt;", ">": "&gt;"}
+
+
+def canonical(m):
+    """One spelling per character: &#039;, &#x27;, &apos; and ' are all '."""
+    c = html.unescape(m[0])
+    return ESCAPED.get(c, c) if len(c) == 1 else m[0]
+
+
 def normalise(text, page):
     text = rewrite(text, page)
     # Hugo's templates drop comments, HTML and JS alike; neither renders or runs.
     text = re.sub(r"<!--.*?-->|//<!--|//-->|/\*.*?\*/", "", text, flags=re.S)
     text = re.sub(r'(href|action)="/index\.html"', r'\1="/"', text)
-    text = re.sub(r"&#0*39;|&apos;", "&#39;", text).replace("&quot;", "&#34;")
+    text = ENTITY.sub(canonical, text)
     text = re.sub(r"\s+", " ", text)
     return re.sub(r">\s+<", "><", text).replace("> ", ">").replace(" <", "<")
 

@@ -1,0 +1,13 @@
+{{ define "main" }}
+{{- $items := sort (where site.RegularPages "Type" "item") "Params.created" "desc" }}
+        <h1><span class="title">Items</span></h1>
+        <p class="row-count">All {{ len $items }} items in this archive, newest first.</p>
+<ul class="resource-list" data-pagefind-ignore>
+{{- range $items }}
+    <li class="item resource">
+        <a href="{{ .RelPermalink }}" tabindex="-1" aria-hidden="true"><img src="{{ partial "thumb.html" (dict "page" . "size" "square") }}" alt=""></a>
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    </li>
+{{- end }}
+</ul>
+{{ end }}

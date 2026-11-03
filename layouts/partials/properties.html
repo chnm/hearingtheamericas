@@ -1,0 +1,29 @@
+{{- /* An item's or media's property list. .props is front matter `properties:`;
+       each value is one of text, html, uri (+ label), or a reference to an
+       item, item-set or media by id. `class` overrides Omeka's value class. */ -}}
+{{- $h3 := eq .h "h3" -}}
+{{- range .props }}
+    <div class="property" data-term="{{ .term }}">
+        {{ if $h3 }}<h3 class="heading-4">{{ else }}<h2 class="heading-4">{{ end }}
+                {{ .label }}                        {{ if $h3 }}</h3>{{ else }}</h2>{{ end }}
+        <div class="values">
+		{{- range .values }}
+			{{- $v := . -}}
+			{{- $kind := "text" -}}
+			{{- range slice "item" "item-set" "media" "uri" }}{{ if isset $v . }}{{ $kind = . }}{{ end }}{{ end -}}
+			{{- $class := index (dict "text" "" "uri" " uri" "item" " resource items" "item-set" " resource item_sets" "media" " resource media") $kind -}}
+			{{- if isset . "class" }}{{ $class = cond (eq .class "") "" (printf " %s" .class) }}{{ end }}
+                                <div class="value{{ $class }}"{{ with .attrs }} {{ . | safeHTMLAttr }}{{ end }}>
+                                {{ if in (slice "item" "item-set" "media") $kind -}}
+				{{ partial "resource-link.html" (dict "page" (partial "resource.html" (printf "%s/%v" $kind (index . $kind))) "thumbnail" .thumbnail) }}
+			{{- else if eq $kind "uri" -}}
+				{{ partial "uri-link.html" . }}
+			{{- else if .html -}}
+				{{ .html | safeHTML }}
+			{{- else -}}
+				{{ .text }}
+			{{- end }}            </div>
+		{{- end }}
+                </div>
+    </div>
+{{- end }}

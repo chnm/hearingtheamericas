@@ -1,0 +1,3 @@
+{{- /* Omeka's resource link: thumbnail and name. The thumbnail is decorative,
+       because the name beside it says the same thing. */ -}}
+<a class="resource-link" href="{{ .page.RelPermalink }}">{{ if ne .thumbnail false }}<img src="{{ partial "thumb.html" (dict "page" .page "size" "square") }}" alt="">{{ end }}<span class="resource-name">{{ .page.Title }}</span></a>

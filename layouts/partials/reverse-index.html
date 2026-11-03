@@ -1,0 +1,16 @@
+{{- /* Every reference from an item or media value to an item, keyed "item/6":
+       what each item's "Related to" list is built from. Called through
+       partialCached, so it is built once per build. */ -}}
+{{- $idx := dict -}}
+{{- range $p := where site.RegularPages "Type" "in" (slice "item" "media") -}}
+	{{- range $p.Params.properties -}}
+		{{- $label := index site.Data.properties .term | default .label -}}
+		{{- range .values -}}
+			{{- with .item -}}
+				{{- $k := printf "item/%v" . -}}
+				{{- $idx = merge $idx (dict $k ((index $idx $k | default slice) | append (dict "id" $p.Params.id "label" $label "page" $p))) -}}
+			{{- end -}}
+		{{- end -}}
+	{{- end -}}
+{{- end -}}
+{{- return $idx -}}

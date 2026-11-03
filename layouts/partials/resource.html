@@ -1,0 +1,4 @@
+{{- /* The item, item set or media a value or link refers to: ref is "item/6". */ -}}
+{{- $p := site.GetPage (printf "/s/the-americas/%s" .) -}}
+{{- if not $p -}}{{- errorf "no such resource: %s" . -}}{{- end -}}
+{{- return $p -}}

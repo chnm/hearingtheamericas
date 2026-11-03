@@ -1,0 +1,34 @@
+{{- /* "Related to": the items and media whose values point at this item, as
+       Omeka listed them: by id, grouped by property in the order the groups
+       first appear. Omeka actually ordered by database row, which no longer
+       exists; `linked_order:` keeps its order for the eleven items where the
+       two differ. */ -}}
+{{- $refs := index (partialCached "reverse-index.html" "all") (printf "item/%v" .Params.id) -}}
+{{- with $refs -}}
+	{{- $seen := dict -}}
+	{{- $s := slice -}}
+	{{- range sort . "id" -}}
+		{{- $k := printf "%v %s" .id .label -}}
+		{{- if not (index $seen $k) }}{{ $seen = merge $seen (dict $k true) }}{{ $s = $s | append . }}{{ end -}}
+	{{- end -}}
+	{{- $groups := slice -}}
+	{{- range $s }}{{ if not (in $groups .label) }}{{ $groups = $groups | append .label }}{{ end }}{{ end -}}
+	{{- $ordered := slice -}}
+	{{- range $g := $groups }}{{ range $s }}{{ if eq .label $g }}{{ $ordered = $ordered | append . }}{{ end }}{{ end }}{{ end -}}
+	{{- with $.Params.linked_order -}}
+		{{- $by := slice -}}
+		{{- range $ref := . }}{{ range $ordered }}{{ if eq (printf "%s/%v" .page.Type .id) $ref }}{{ $by = $by | append . }}{{ end }}{{ end }}{{ end -}}
+		{{- $ordered = $by -}}
+	{{- end }}
+<div id="item-linked">
+    <h2 class="heading-3">Related to {{ $.Title }}</h2>
+    <div id="linked-resources">
+	{{- range $ordered }}
+<div class="linked-resource">
+    <h3 class="heading-4">{{ .label }}</h3>
+    {{ partial "resource-link.html" (dict "page" .page) }}{{ with .page.Params.resource_class }}        <span class="resource-class">{{ . }}</span>{{ end }}
+    </div>
+	{{- end }}
+</div>
+</div>
+{{- end -}}

@@ -1,0 +1,35 @@
+{{ define "body_class" }}{{ .Params.body_class | default "item resource browse item-set content-warning-banner" }}{{ end }}
+{{ define "main" }}
+{{- /* Omeka paged item sets 50 at a time, newest first; the archive kept page 1. */ -}}
+{{- $id := .Params.id -}}
+{{- $items := slice -}}
+{{- range sort (where site.RegularPages "Type" "item") "Params.created" "desc" }}{{ if in (.Params.item_sets | default slice) $id }}{{ $items = $items | append . }}{{ end }}{{ end -}}
+{{- $n := len $items -}}
+{{- $pages := int (math.Ceil (div (float $n) 50)) }}
+    <h1 class="heading-2"><span class="title">{{ .Title }}</span></h1>    <h2 class="heading-3">Items</h2>
+
+
+
+<ul class="resource-list">
+{{- range first 50 $items }}
+    <li class="item resource">
+                <a href="{{ .RelPermalink }}" tabindex="-1" aria-hidden="true"><img src="{{ partial "thumb.html" (dict "page" . "size" "medium") }}" alt="{{ .Params.thumbnail_alt }}"></a>                <h3 class="heading-4"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+            </li>
+{{- end }}
+</ul>
+{{ range first 50 $items }}{{ partial "jsonld.html" . }}{{ end }}<div class="browse-controls">
+  <nav class="pagination" role="navigation">
+    <form method="GET" action="">
+        <input type="hidden" name="sort_by" value="created"><input type="hidden" name="sort_order" value="desc">        <input type="text" name="page" class="page-input-top" value="1" size="4" {{ if eq $pages 1 }}readonly {{ end }}aria-label="Page">
+        <span class="page-count">of {{ $pages }}</span>
+    </form>
+
+        <span class="previous o-icon-prev button inactive"></span>
+    {{ if gt $pages 1 }}
+        <a class="next o-icon-next button" title="Next" aria-label="Next" href="{{ .RelPermalink }}"></a>    {{ else }}
+        <span class="next o-icon-next button inactive"></span>
+    {{ end }}
+        <span class="row-count">1–{{ cond (gt $n 50) 50 $n }} of {{ $n }}</span>
+</nav>
+</div>
+{{ end }}
