@@ -8,10 +8,11 @@ University, with funding from the National Endowment for the Humanities.
 It was an Omeka S site. It was flattened to a static archive and brought to
 WCAG 2.2 AA in August 2026 (see [docs/retrofit.md](docs/retrofit.md)), and is
 now a Hugo site so that it can be added to. The Hugo build reproduces that
-archive page for page: `scripts/parity.py` compares the two and reports one
-difference across all 964 pages and 225 other files, on purpose: item set
-pages list every item, where the archive kept only Omeka's first page of 50
-(so item set 56, Songs, was missing 22).
+archive page for page: `scripts/parity.py` compares the two and reports two
+differences across all 964 pages and 225 other files, both on purpose. Item
+set pages list every item, where the archive kept only Omeka's first page of
+50 (so item set 56, Songs, was missing 22). `timeline.json` carries `alt`
+text for the three timeline images that have no caption or credit.
 
 ## Layout
 
@@ -86,7 +87,8 @@ with `title:` and `body_class: "page <slug> content-warning-banner"`. To put it
 in the navigation, add a `[[menus.main]]` entry to `hugo.toml`.
 
 **A timeline event.** An entry in `static/timeline/timeline.json`, in the
-TimelineJS sheet's shape.
+TimelineJS sheet's shape. An image's alt text is its `media.alt`, falling back
+to the caption and then the credit.
 
 Optional front matter the templates honour: `thumbnail:` (an image path; the
 default is the first media's square derivative), `thumbnail_alt:`,
@@ -115,11 +117,11 @@ through `chnm/.github/.github/workflows/hugo--build-release-deploy.yml`.
 
 ## Checking a change against the archive
 
-`scripts/parity.py` compares a build with the static archive the conversion
-started from:
+`scripts/parity.py` compares a build with the static archive, as it stood
+once the untitled media were described (chnm/sustainability#142):
 
 ```sh
-git -C ../sustainability archive 4d90af8027 hearingtheamericas | tar -x -C /tmp
+git -C ../sustainability archive c760bd5695 hearingtheamericas | tar -x -C /tmp
 hugo -d /tmp/hta-public
 python3 scripts/parity.py /tmp/hearingtheamericas /tmp/hta-public -v
 ```
