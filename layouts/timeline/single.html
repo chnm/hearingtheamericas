@@ -34,7 +34,7 @@
 	{{- with .media }}
         <div class="tl-slide-media">
           <figure class="tl-figure">
-            <img src="{{ .url }}" alt="{{ .caption | default .credit }}">
+            <img src="{{ .url }}" alt="{{ .alt | default (.caption | default .credit) }}">
 		{{- with .caption }}
             <figcaption class="tl-caption">{{ . }}</figcaption>
 		{{- end }}
