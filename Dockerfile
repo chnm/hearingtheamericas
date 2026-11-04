@@ -2,18 +2,18 @@
 
 FROM stagex/pallet-nodejs AS build-stage
 
-# stagex/user-hugo-extended ships the binary inside a directory at
-# /usr/bin/hugo/, named "hugo_exended" (sic — the missing 'x' is upstream's).
-# Copy the file itself, not the directory.
-COPY --from=stagex/user-hugo-extended /usr/bin/hugo/hugo_exended /usr/local/bin/hugo
+COPY --from=stagex/user-hugo-extended:0.161.1 /usr/bin/hugo /usr/local/bin/hugo
 
 ARG hugobuildargs
 ENV HUGO_BUILD_ARGS=$hugobuildargs
 
 WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm ci
+
 COPY . .
 
-RUN npm ci
 RUN hugo ${HUGO_BUILD_ARGS}
 # The search index. pagefind.yml limits it to each page's <main data-pagefind-body>.
 RUN npx --no-install pagefind

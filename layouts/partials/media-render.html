@@ -1,9 +1,9 @@
 {{- /* What a media shows: an image linked to its original, an audio player
        named after the recording, or (kind: html) markup kept as Omeka served it. */ -}}
 {{- $f := printf "/files/original/%s" .Params.file -}}
-{{- if eq .Params.kind "image" -}}
+{{- if eq .Params.media_type "image" -}}
 <a href="{{ $f }}" title="{{ .Params.link_title }}"><img src="{{ .Params.display | default (printf "/files/large/%s.jpg" (path.BaseName .Params.file)) }}" alt="{{ .Params.alt }}"></a>
-{{- else if eq .Params.kind "audio" -}}
+{{- else if eq .Params.media_type "audio" -}}
 <audio src="{{ $f }}" controls title="{{ .Params.label }}"><a href="{{ $f }}">{{ .Params.label }}</a></audio>
 {{- else -}}
 {{ .Params.html | safeHTML }}
